@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ch. 02 — Walking | Biomechanics of Movement</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1B2A41;
+      --bone: #F7F4EE;
+      --bone-deep: #EFEADF;
+      --orange: #E8623C;
+      --graphite: #2E2E2E;
+      --line: #D8D2C4;
+      --green: #3a7d5a;
+      --red: #c0392b;
+      --card-bg: #fff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bone);
+      color: var(--graphite);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+    }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+
+    /* HEADER */
+    header { padding: 28px 0; border-bottom: 1px solid var(--line); }
+    .nav { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .brand { font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink); text-decoration: none; }
+    .brand span { color: var(--orange); }
+    .nav-right { display: flex; align-items: center; gap: 24px; }
+    .chapter-tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #9a9484; background: var(--bone-deep); border: 1px solid var(--line); border-radius: 3px; padding: 6px 12px; }
+
+    /* CHAPTER HERO */
+    .ch-hero { padding: 70px 0 60px; border-bottom: 1px solid var(--line); }
+    .ch-hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .ch-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; }
+    .ch-hero h1 { font-family: 'Fraunces', serif; font-weight: 600; font-size: clamp(42px, 6vw, 72px); line-height: 1.05; color: var(--ink); letter-spacing: -0.01em; }
+    .ch-hero h1 em { font-style: italic; font-weight: 300; color: var(--orange); }
+    .ch-hero-sub { margin-top: 20px; font-size: 17px; color: #4a4a4a; max-width: 500px; }
+    .ch-meta { margin-top: 32px; display: flex; gap: 32px; flex-wrap: wrap; }
+    .ch-meta-item { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #9a9484; }
+    .ch-meta-item strong { display: block; font-family: 'Fraunces', serif; font-size: 20px; font-weight: 300; color: var(--ink); letter-spacing: 0; text-transform: none; margin-bottom: 2px; }
+
+    .hero-figure-plate { background: var(--ink); border-radius: 4px; height: 320px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .hero-figure-plate::after { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(135deg, rgba(247,244,238,0.025) 0px, rgba(247,244,238,0.025) 1px, transparent 1px, transparent 10px); }
+    .hero-figure-plate svg { z-index: 1; }
+    .fig-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(247,244,238,0.5); text-align: center; margin-top: 10px; }
+
+    /* MODE TABS */
+    .mode-bar { position: sticky; top: 0; z-index: 100; background: var(--bone); border-bottom: 1px solid var(--line); padding: 0; }
+    .mode-tabs { display: flex; overflow-x: auto; }
+    .mode-tab { flex-shrink: 0; padding: 18px 28px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: #9a9484; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; background: none; border-top: none; border-left: none; border-right: none; }
+    .mode-tab:hover { color: var(--ink); }
+    .mode-tab.active { color: var(--orange); border-bottom-color: var(--orange); }
+
+    /* PANELS */
+    .panel { display: none; padding: 60px 0 100px; }
+    .panel.active { display: block; }
+
+    /* NOTES PANEL */
+    .notes-layout { display: grid; grid-template-columns: 240px 1fr; gap: 60px; align-items: start; }
+    .notes-toc { position: sticky; top: 73px; }
+    .toc-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #9a9484; margin-bottom: 16px; }
+    .toc-list { list-style: none; }
+    .toc-list li { margin-bottom: 2px; }
+    .toc-list a { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #9a9484; text-decoration: none; padding: 5px 0; display: block; border-left: 2px solid transparent; padding-left: 12px; transition: all 0.2s; letter-spacing: 0.05em; }
+    .toc-list a:hover { color: var(--ink); border-left-color: var(--line); }
+    .toc-list a.current { color: var(--orange); border-left-color: var(--orange); }
+
+    .notes-content { max-width: 680px; }
+    .section-block { margin-bottom: 64px; }
+    .section-block:last-child { margin-bottom: 0; }
+    .section-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--orange); margin-bottom: 12px; }
+    .section-block h2 { font-family: 'Fraunces', serif; font-weight: 600; font-size: 30px; color: var(--ink); margin-bottom: 18px; line-height: 1.15; }
+    .section-block h3 { font-family: 'Fraunces', serif; font-weight: 500; font-size: 20px; color: var(--ink); margin: 28px 0 10px; }
+    .section-block p { font-size: 16px; color: #3a3a3a; margin-bottom: 14px; line-height: 1.7; }
+    .section-block ul, .section-block ol { padding-left: 20px; margin-bottom: 14px; }
+    .section-block li { font-size: 16px; color: #3a3a3a; margin-bottom: 6px; line-height: 1.65; }
+    .section-block li strong { color: var(--ink); }
+
+    /* Figure placeholder */
+    .fig-placeholder { background: var(--ink); border-radius: 4px; margin: 28px 0; position: relative; overflow: hidden; }
+    .fig-placeholder::after { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(135deg, rgba(247,244,238,0.025) 0px, rgba(247,244,238,0.025) 1px, transparent 1px, transparent 10px); pointer-events: none; }
+    .fig-inner { padding: 40px 32px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 200px; position: relative; z-index: 1; }
+    .fig-placeholder svg { opacity: 0.55; }
+    .fig-caption { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(247,244,238,0.5); margin-top: 14px; text-align: center; line-height: 1.5; }
+    .fig-number { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 300; color: rgba(247,244,238,0.15); position: absolute; top: 12px; right: 18px; letter-spacing: 0; }
+
+    /* Key concept box */
+    .key-box { border-left: 3px solid var(--orange); background: var(--bone-deep); padding: 18px 22px; margin: 20px 0; border-radius: 0 4px 4px 0; }
+    .key-box-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); margin-bottom: 6px; }
+    .key-box p { font-size: 15px; color: var(--ink); margin: 0; font-style: italic; }
+
+    /* Table */
+    .notes-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 15px; }
+    .notes-table th { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink); padding: 10px 16px; border-bottom: 2px solid var(--ink); text-align: left; }
+    .notes-table td { padding: 10px 16px; border-bottom: 1px solid var(--line); color: #3a3a3a; vertical-align: top; }
+    .notes-table tr:last-child td { border-bottom: none; }
+    .notes-table td:first-child { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink); }
+
+    /* Flow diagram */
+    .flow-diagram { background: var(--bone-deep); border: 1px solid var(--line); border-radius: 4px; padding: 28px; margin: 20px 0; }
+    .flow-steps { display: flex; flex-direction: column; gap: 0; }
+    .flow-step { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+    .flow-step:last-child { border-bottom: none; }
+    .flow-num { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 300; color: var(--orange); line-height: 1; flex-shrink: 0; width: 36px; }
+    .flow-text strong { display: block; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14px; color: var(--ink); margin-bottom: 3px; }
+    .flow-text span { font-size: 13px; color: #6a6a6a; }
+
+    /* Gait phase bar */
+    .gait-bar { margin: 24px 0; }
+    .gait-bar-track { display: flex; height: 40px; border-radius: 4px; overflow: hidden; border: 1px solid var(--line); }
+    .gait-stance { background: var(--ink); flex: 6; display: flex; align-items: center; justify-content: center; }
+    .gait-swing { background: var(--orange); flex: 4; display: flex; align-items: center; justify-content: center; }
+    .gait-bar-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(247,244,238,0.8); }
+    .gait-bar-legend { display: flex; gap: 24px; margin-top: 10px; }
+    .gait-legend-item { display: flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #9a9484; }
+    .gait-swatch { width: 12px; height: 12px; border-radius: 2px; }
+
+    /* MCQ / FITB / FLASH shared */
+    .activity-header { margin-bottom: 40px; }
+    .activity-header h2 { font-family: 'Fraunces', serif; font-weight: 600; font-size: 36px; color: var(--ink); }
+    .activity-header p { font-size: 15px; color: #6a6a6a; margin-top: 8px; }
+
+    .quiz-toolbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; flex-wrap: wrap; gap: 16px; }
+    .timer-badge { display: flex; align-items: center; gap: 10px; background: var(--ink); color: var(--bone); border-radius: 4px; padding: 10px 18px; font-family: 'JetBrains Mono', monospace; font-size: 18px; letter-spacing: 0.05em; }
+    .timer-badge .timer-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(247,244,238,0.5); display: block; }
+    .timer-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--orange); animation: pulse 1s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    .progress-bar-wrap { flex: 1; min-width: 200px; max-width: 300px; }
+    .progress-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: #9a9484; margin-bottom: 6px; }
+    .progress-bar { height: 4px; background: var(--line); border-radius: 2px; overflow: hidden; }
+    .progress-fill { height: 100%; background: var(--orange); border-radius: 2px; transition: width 0.3s ease; }
+
+    .question-block { background: var(--card-bg); border: 1px solid var(--line); border-radius: 4px; padding: 32px; margin-bottom: 20px; position: relative; }
+    .q-number { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #9a9484; margin-bottom: 12px; }
+    .q-text { font-family: 'Fraunces', serif; font-weight: 500; font-size: 20px; color: var(--ink); line-height: 1.35; margin-bottom: 24px; }
+    .options { display: flex; flex-direction: column; gap: 10px; }
+    .option-btn { text-align: left; padding: 14px 18px; border: 1px solid var(--line); border-radius: 4px; background: var(--bone); cursor: pointer; font-size: 15px; color: #3a3a3a; font-family: 'Inter', sans-serif; transition: all 0.15s; display: flex; align-items: center; gap: 12px; }
+    .option-btn:hover:not(:disabled) { border-color: var(--ink); background: #fff; }
+    .option-key { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #9a9484; flex-shrink: 0; width: 18px; }
+    .option-btn.correct { border-color: var(--green); background: #f0faf5; color: var(--green); }
+    .option-btn.correct .option-key { color: var(--green); }
+    .option-btn.wrong { border-color: var(--red); background: #fdf2f1; color: var(--red); }
+    .option-btn.wrong .option-key { color: var(--red); }
+    .option-btn:disabled { cursor: not-allowed; }
+    .feedback-msg { margin-top: 16px; padding: 12px 16px; border-radius: 4px; font-size: 14px; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.02em; display: none; }
+    .feedback-msg.show { display: block; }
+    .feedback-msg.ok { background: #f0faf5; color: var(--green); }
+    .feedback-msg.bad { background: #fdf2f1; color: var(--red); }
+
+    .quiz-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 32px; flex-wrap: wrap; gap: 16px; }
+    .btn-primary { background: var(--ink); color: var(--bone); border: none; padding: 14px 28px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; border-radius: 4px; transition: background 0.2s; }
+    .btn-primary:hover { background: #0f1f33; }
+    .btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); padding: 14px 28px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+    .btn-ghost:hover { border-color: var(--ink); }
+
+    /* Score screen */
+    .score-screen { display: none; text-align: center; padding: 60px 0; }
+    .score-screen.show { display: block; }
+    .score-circle { width: 160px; height: 160px; border-radius: 50%; border: 4px solid var(--orange); display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 32px; }
+    .score-num { font-family: 'Fraunces', serif; font-size: 56px; font-weight: 300; color: var(--orange); line-height: 1; }
+    .score-denom { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #9a9484; margin-top: 4px; }
+    .score-grade { font-family: 'Fraunces', serif; font-size: 32px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+    .score-msg { font-size: 15px; color: #6a6a6a; max-width: 400px; margin: 0 auto 32px; }
+    .score-stats { display: flex; justify-content: center; gap: 48px; margin-bottom: 40px; }
+    .stat-item { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #9a9484; text-transform: uppercase; letter-spacing: 0.1em; text-align: center; }
+    .stat-item strong { display: block; font-family: 'Fraunces', serif; font-size: 28px; font-weight: 300; color: var(--ink); text-transform: none; letter-spacing: 0; margin-bottom: 4px; }
+
+    /* FITB */
+    .fitb-question { background: #fff; border: 1px solid var(--line); border-radius: 4px; padding: 28px 32px; margin-bottom: 20px; }
+    .fitb-q-text { font-family: 'Fraunces', serif; font-weight: 500; font-size: 19px; color: var(--ink); line-height: 1.5; margin-bottom: 18px; }
+    .fitb-input-wrap { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .fitb-input { border: none; border-bottom: 2px solid var(--ink); background: transparent; font-family: 'Fraunces', serif; font-size: 18px; color: var(--ink); padding: 4px 8px; outline: none; min-width: 180px; transition: border-color 0.2s; }
+    .fitb-input:focus { border-color: var(--orange); }
+    .fitb-input.correct { border-color: var(--green); color: var(--green); }
+    .fitb-input.wrong { border-color: var(--red); color: var(--red); }
+    .check-btn { background: var(--bone-deep); border: 1px solid var(--line); padding: 8px 18px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; border-radius: 3px; transition: all 0.15s; color: var(--ink); }
+    .check-btn:hover { background: var(--ink); color: var(--bone); }
+    .fitb-hint { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #9a9484; margin-top: 10px; display: none; }
+    .fitb-hint.show { display: block; }
+    .fitb-answer { font-family: 'JetBrains Mono', monospace; font-size: 11px; margin-top: 8px; display: none; }
+    .fitb-answer.show { display: block; }
+
+    /* FLASHCARDS */
+    .flashcard-area { max-width: 640px; margin: 0 auto; }
+    .fc-deck-info { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; flex-wrap: wrap; gap: 12px; }
+    .fc-deck-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #9a9484; }
+    .fc-counter { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--ink); }
+    .fc-card { perspective: 900px; height: 280px; margin-bottom: 32px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+    .fc-inner { width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.55s cubic-bezier(.4,.2,.2,1); position: relative; }
+    .fc-card.flipped .fc-inner { transform: rotateY(180deg); }
+    .fc-face { position: absolute; inset: 0; backface-visibility: hidden; border-radius: 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 36px; text-align: center; }
+    .fc-front { background: var(--ink); border: 1px solid var(--ink); }
+    .fc-back { background: var(--bone-deep); border: 1px solid var(--line); transform: rotateY(180deg); }
+    .fc-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; position: absolute; top: 16px; left: 20px; }
+    .fc-front .fc-tag { color: rgba(247,244,238,0.4); }
+    .fc-back .fc-tag { color: var(--orange); }
+    .fc-flip-hint { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; position: absolute; bottom: 14px; right: 18px; opacity: 0.4; }
+    .fc-front .fc-flip-hint { color: var(--bone); }
+    .fc-back .fc-flip-hint { color: var(--ink); }
+    .fc-question { font-family: 'Fraunces', serif; font-weight: 500; font-size: 22px; color: var(--bone); line-height: 1.3; }
+    .fc-answer { font-family: 'Inter', sans-serif; font-size: 16px; color: var(--graphite); line-height: 1.6; }
+    .fc-answer strong { color: var(--orange); font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; display: block; margin-bottom: 8px; }
+    .fc-controls { display: flex; justify-content: center; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
+    .fc-know { background: #f0faf5; border: 1px solid var(--green); color: var(--green); padding: 12px 24px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+    .fc-know:hover { background: var(--green); color: #fff; }
+    .fc-again { background: #fdf2f1; border: 1px solid var(--red); color: var(--red); padding: 12px 24px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+    .fc-again:hover { background: var(--red); color: #fff; }
+    .fc-skip { background: var(--bone-deep); border: 1px solid var(--line); color: #9a9484; padding: 12px 24px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+    .fc-skip:hover { border-color: var(--ink); color: var(--ink); }
+    .fc-progress-dots { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; margin-bottom: 8px; }
+    .fc-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--line); transition: background 0.3s; }
+    .fc-dot.known { background: var(--green); }
+    .fc-dot.again { background: var(--red); }
+    .fc-dot.current { background: var(--orange); }
+    .fc-score-bar { display: flex; gap: 24px; justify-content: center; margin-top: 24px; }
+    .fc-score-item { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; text-align: center; color: #9a9484; }
+    .fc-score-item strong { display: block; font-family: 'Fraunces', serif; font-size: 24px; font-weight: 300; color: var(--ink); text-transform: none; letter-spacing: 0; }
+    .fc-score-item.s-known strong { color: var(--green); }
+    .fc-score-item.s-again strong { color: var(--red); }
+    .fc-complete { display: none; text-align: center; padding: 40px 20px; background: #fff; border: 1px solid var(--line); border-radius: 4px; }
+    .fc-complete.show { display: block; }
+
+    footer { border-top: 1px solid var(--line); padding: 36px 0; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #a39c8c; text-align: center; }
+
+    /* BACK LINK */
+    .back-link { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: #9a9484; text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s; white-space: nowrap; }
+    .back-link:hover { color: var(--orange); }
+    .back-link svg { flex-shrink: 0; }
+
+    /* TOC TOGGLE BUTTON — hidden on desktop */
+    .toc-toggle-wrap { display: none; }
+
+    .toc-toggle-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bone-deep);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 12px 18px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink);
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .toc-toggle-btn:hover { border-color: var(--ink); }
+    .toc-toggle-btn.open { border-color: var(--orange); color: var(--orange); }
+
+    /* Hamburger icon */
+    .toc-icon { display: flex; flex-direction: column; gap: 4px; flex-shrink: 0; }
+    .toc-icon span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: currentColor;
+      border-radius: 2px;
+      transition: transform 0.25s, opacity 0.25s;
+      transform-origin: center;
+    }
+    .toc-toggle-btn.open .toc-icon span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .toc-toggle-btn.open .toc-icon span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .toc-toggle-btn.open .toc-icon span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    .toc-toggle-label { flex: 1; }
+
+    .toc-chevron {
+      margin-left: auto;
+      font-size: 10px;
+      opacity: 0.5;
+      transition: transform 0.25s;
+    }
+    .toc-toggle-btn.open .toc-chevron { transform: rotate(180deg); }
+
+    /* Drawer */
+    .toc-drawer {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      background: #fff;
+      border: 1px solid var(--line);
+      border-top: none;
+      border-radius: 0 0 4px 4px;
+    }
+    .toc-drawer.open { max-height: 600px; }
+    .toc-drawer-inner { padding: 8px 0 12px; }
+    .toc-drawer .toc-list a {
+      font-size: 13px;
+      padding: 8px 20px;
+      border-left: none;
+      border-bottom: 1px solid var(--bone-deep);
+    }
+    .toc-drawer .toc-list li:last-child a { border-bottom: none; }
+    .toc-drawer .toc-list a:hover { background: var(--bone); color: var(--ink); }
+    .toc-drawer .toc-list a.current { color: var(--orange); background: #fff8f5; }
+
+    /* ── TABLET (≤ 860px) ── */
+    @media(max-width:860px) {
+      .notes-layout { grid-template-columns: 1fr; }
+      .notes-toc { display: none; }
+      .toc-toggle-wrap { display: block; margin-bottom: 32px; }
+      .ch-hero-inner { grid-template-columns: 1fr; }
+      .hero-figure-plate { display: none; }
+      .notes-content { max-width: 100%; }
+
+      /* tables scroll horizontally */
+      .notes-table { font-size: 13px; }
+      .notes-table th, .notes-table td { padding: 8px 12px; }
+
+      /* quiz toolbar stacks */
+      .quiz-toolbar { flex-direction: column; align-items: flex-start; }
+      .progress-bar-wrap { max-width: 100%; width: 100%; }
+
+      /* question blocks */
+      .question-block { padding: 24px 20px; }
+      .q-text { font-size: 18px; }
+
+      /* score stats wrap */
+      .score-stats { gap: 24px; flex-wrap: wrap; }
+
+      /* FITB */
+      .fitb-question { padding: 20px; }
+      .fitb-input-wrap { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .fitb-input { min-width: 100%; }
+
+      /* flashcard */
+      .fc-card { height: 240px; }
+      .fc-face { padding: 32px 24px; }
+      .fc-question { font-size: 19px; }
+      .fc-answer { font-size: 14px; }
+      .fc-controls { gap: 8px; }
+      .fc-know, .fc-again, .fc-skip { padding: 10px 16px; font-size: 10px; }
+    }
+
+    /* ── MOBILE (≤ 600px) ── */
+    @media(max-width:600px) {
+      .container { padding: 0 16px; }
+      .ch-hero { padding: 36px 0 32px; }
+      .panel { padding: 32px 0 72px; }
+
+      /* nav: brand + back stack gracefully */
+      .nav { gap: 8px; }
+      .chapter-tag { display: none; } /* hide on small screens, saves space */
+
+      /* hero */
+      .ch-hero h1 { font-size: clamp(34px, 9vw, 52px); }
+      .ch-hero-sub { font-size: 15px; }
+      .ch-meta { gap: 20px; }
+      .ch-meta-item strong { font-size: 18px; }
+
+      /* mode tabs tighter */
+      .mode-tab { padding: 14px 16px; font-size: 11px; letter-spacing: 0.08em; }
+
+      /* section headers */
+      .section-block h2 { font-size: 24px; }
+      .section-block h3 { font-size: 17px; }
+      .section-block p, .section-block li { font-size: 15px; }
+
+      /* key box */
+      .key-box { padding: 14px 16px; }
+      .key-box p { font-size: 14px; }
+
+      /* tables: allow horizontal scroll */
+      .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .notes-table { min-width: 480px; }
+
+      /* flow diagram */
+      .flow-diagram { padding: 16px; }
+      .flow-num { font-size: 22px; width: 28px; }
+      .flow-text strong { font-size: 13px; }
+      .flow-text span { font-size: 12px; }
+
+      /* gait bar label */
+      .gait-bar-label { font-size: 9px; }
+
+      /* activity header */
+      .activity-header h2 { font-size: 28px; }
+
+      /* timer badge */
+      .timer-badge { font-size: 15px; padding: 8px 14px; }
+
+      /* question */
+      .question-block { padding: 18px 16px; }
+      .q-text { font-size: 16px; margin-bottom: 18px; }
+      .option-btn { padding: 12px 14px; font-size: 14px; }
+
+      /* score circle */
+      .score-circle { width: 130px; height: 130px; }
+      .score-num { font-size: 44px; }
+      .score-grade { font-size: 24px; }
+      .score-stats { gap: 16px; }
+      .stat-item strong { font-size: 22px; }
+
+      /* FITB */
+      .fitb-q-text { font-size: 16px; }
+      .fitb-input { font-size: 16px; } /* 16px prevents iOS zoom */
+
+      /* flashcard */
+      .fc-card { height: 220px; }
+      .fc-face { padding: 28px 20px; }
+      .fc-question { font-size: 17px; }
+      .fc-answer { font-size: 13px; }
+      .fc-answer strong { font-size: 15px; }
+      .fc-score-bar { gap: 16px; }
+      .fc-score-item strong { font-size: 20px; }
+
+      /* btn */
+      .btn-primary, .btn-ghost { padding: 12px 20px; font-size: 11px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container nav">
+      <a href="/" class="brand">Biomechanics <span>of Movement</span></a>
+      <div class="nav-right">
+        <a href="index.html" class="back-link">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 2L4 7L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Home
+        </a>
+        <span class="chapter-tag">CH. 02 — Walking</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- CHAPTER HERO -->
+  <section class="ch-hero">
+    <div class="container ch-hero-inner">
+      <div>
+        <div class="ch-eyebrow">Chapter 02 · Locomotion</div>
+        <h1>Human <em>Walking</em></h1>
+        <p class="ch-hero-sub">The gait cycle, ground reaction forces, energy exchange, and the mechanical models that explain why walking is one of the most efficient forms of locomotion.</p>
+        <div class="ch-meta">
+          <div class="ch-meta-item"><strong>16</strong>Sections</div>
+          <div class="ch-meta-item"><strong>10</strong>MCQ Questions</div>
+          <div class="ch-meta-item"><strong>8</strong>Fill-in-Blank</div>
+          <div class="ch-meta-item"><strong>16</strong>Flashcards</div>
+        </div>
+      </div>
+      <div>
+        <div class="hero-figure-plate">
+          <svg width="260" height="220" viewBox="0 0 260 220" xmlns="http://www.w3.org/2000/svg">
+            <!-- Gait cycle strip -->
+            <text x="20" y="28" font-family="JetBrains Mono, monospace" font-size="9" fill="#F7F4EE" opacity="0.45" letter-spacing="0.1em">GAIT CYCLE</text>
+            <!-- stance bar -->
+            <rect x="20" y="40" width="144" height="22" rx="2" fill="#F7F4EE" opacity="0.18"/>
+            <text x="26" y="55" font-family="JetBrains Mono, monospace" font-size="8" fill="#F7F4EE" opacity="0.7" letter-spacing="0.08em">STANCE — 60%</text>
+            <!-- swing bar -->
+            <rect x="164" y="40" width="76" height="22" rx="2" fill="#E8623C" opacity="0.55"/>
+            <text x="168" y="55" font-family="JetBrains Mono, monospace" font-size="8" fill="#F7F4EE" opacity="0.9" letter-spacing="0.08em">SWING 40%</text>
+
+            <!-- GRF curve -->
+            <text x="20" y="90" font-family="JetBrains Mono, monospace" font-size="9" fill="#F7F4EE" opacity="0.45" letter-spacing="0.1em">VERTICAL GRF</text>
+            <path d="M20,160 Q55,100 100,120 Q130,132 140,145 Q160,105 200,110 Q225,120 240,160" fill="none" stroke="#E8623C" stroke-width="2" opacity="0.8"/>
+            <!-- body weight line -->
+            <line x1="20" y1="138" x2="240" y2="138" stroke="#F7F4EE" stroke-width="1" stroke-dasharray="4 3" opacity="0.3"/>
+            <text x="20" y="135" font-family="JetBrains Mono, monospace" font-size="7" fill="#F7F4EE" opacity="0.35" letter-spacing="0.08em">BW</text>
+            <!-- x axis -->
+            <line x1="20" y1="162" x2="240" y2="162" stroke="#F7F4EE" stroke-width="1" opacity="0.25"/>
+            <text x="20" y="176" font-family="JetBrains Mono, monospace" font-size="8" fill="#F7F4EE" opacity="0.4" letter-spacing="0.08em">0%</text>
+            <text x="110" y="176" font-family="JetBrains Mono, monospace" font-size="8" fill="#F7F4EE" opacity="0.4" letter-spacing="0.08em">50%</text>
+            <text x="218" y="176" font-family="JetBrains Mono, monospace" font-size="8" fill="#F7F4EE" opacity="0.4" letter-spacing="0.08em">100%</text>
+
+            <!-- model label -->
+            <text x="20" y="200" font-family="JetBrains Mono, monospace" font-size="8" fill="#E8623C" opacity="0.6" letter-spacing="0.1em">INVERTED</text>
+            <text x="20" y="212" font-family="JetBrains Mono, monospace" font-size="8" fill="#E8623C" opacity="0.6" letter-spacing="0.1em">PENDULUM</text>
+          </svg>
+        </div>
+        <div class="fig-label">Fig. 2.0 — GRF double-hump pattern across the gait cycle</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODE TABS -->
+  <div class="mode-bar">
+    <div class="container">
+      <div class="mode-tabs">
+        <button class="mode-tab active" onclick="switchPanel('notes',this)">Study Notes</button>
+        <button class="mode-tab" onclick="switchPanel('mcq',this)">MCQ Quiz</button>
+        <button class="mode-tab" onclick="switchPanel('fitb',this)">Fill in the Blank</button>
+        <button class="mode-tab" onclick="switchPanel('flash',this)">Flashcards</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== NOTES PANEL ========== -->
+  <div id="panel-notes" class="panel active">
+    <div class="container">
+      <div class="notes-layout">
+
+        <nav class="notes-toc">
+          <div class="toc-label">Contents</div>
+          <ul class="toc-list">
+            <li><a href="#s1">1. What is Locomotion?</a></li>
+            <li><a href="#s2">2. Locomotion Models</a></li>
+            <li><a href="#s3">3. Walking vs Running</a></li>
+            <li><a href="#s4">4. The Gait Cycle</a></li>
+            <li><a href="#s5">5. Double Support</a></li>
+            <li><a href="#s6">6. Gait Parameters</a></li>
+            <li><a href="#s7">7. Ground Reaction Forces</a></li>
+            <li><a href="#s8">8. Force Plates</a></li>
+            <li><a href="#s9">9. Newton's Second Law</a></li>
+            <li><a href="#s10">10. Center of Mass</a></li>
+            <li><a href="#s11">11. Energy in Walking</a></li>
+            <li><a href="#s12">12. Energy Exchange</a></li>
+            <li><a href="#s13">13. Ballistic Walking</a></li>
+            <li><a href="#s14">14. Dynamic Walking</a></li>
+            <li><a href="#s15">15. Gait Transitions</a></li>
+            <li><a href="#s16">16. Model Limitations</a></li>
+            <li><a href="#sexam">Quick Review</a></li>
+          </ul>
+        </nav>
+
+        <div class="notes-content">
+
+          <!-- MOBILE TOC TOGGLE -->
+          <div class="toc-toggle-wrap">
+            <button class="toc-toggle-btn" id="toc-toggle-btn" onclick="toggleTOC()" aria-expanded="false" aria-controls="toc-drawer">
+              <span class="toc-icon" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </span>
+              <span class="toc-toggle-label">Contents</span>
+              <span class="toc-chevron">▼</span>
+            </button>
+            <div class="toc-drawer" id="toc-drawer" role="navigation" aria-label="Chapter contents">
+              <div class="toc-drawer-inner">
+                <ul class="toc-list">
+                  <li><a href="#s1" onclick="closeTOC()">1. What is Locomotion?</a></li>
+                  <li><a href="#s2" onclick="closeTOC()">2. Locomotion Models</a></li>
+                  <li><a href="#s3" onclick="closeTOC()">3. Walking vs Running</a></li>
+                  <li><a href="#s4" onclick="closeTOC()">4. The Gait Cycle</a></li>
+                  <li><a href="#s5" onclick="closeTOC()">5. Double Support</a></li>
+                  <li><a href="#s6" onclick="closeTOC()">6. Gait Parameters</a></li>
+                  <li><a href="#s7" onclick="closeTOC()">7. Ground Reaction Forces</a></li>
+                  <li><a href="#s8" onclick="closeTOC()">8. Force Plates</a></li>
+                  <li><a href="#s9" onclick="closeTOC()">9. Newton's Second Law</a></li>
+                  <li><a href="#s10" onclick="closeTOC()">10. Center of Mass</a></li>
+                  <li><a href="#s11" onclick="closeTOC()">11. Energy in Walking</a></li>
+                  <li><a href="#s12" onclick="closeTOC()">12. Energy Exchange</a></li>
+                  <li><a href="#s13" onclick="closeTOC()">13. Ballistic Walking</a></li>
+                  <li><a href="#s14" onclick="closeTOC()">14. Dynamic Walking</a></li>
+                  <li><a href="#s15" onclick="closeTOC()">15. Gait Transitions</a></li>
+                  <li><a href="#s16" onclick="closeTOC()">16. Model Limitations</a></li>
+                  <li><a href="#sexam" onclick="closeTOC()">Quick Review</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="section-block" id="s1">
+            <div class="section-eyebrow">Section 1</div>
+            <h2>What is Locomotion?</h2>
+            <p><strong>Locomotion</strong> is the movement of the body from one location to another. Examples include walking, running, jumping, and hopping.</p>
+            <p>Biomechanists study locomotion to understand:</p>
+            <ul>
+              <li>Energy efficiency</li>
+              <li>Stability and balance</li>
+              <li>Athletic performance</li>
+              <li>Injury prevention</li>
+              <li>Rehabilitation and prosthetics design</li>
+            </ul>
+            <div class="key-box">
+              <div class="key-box-label">Why It Matters</div>
+              <p>Human locomotion is extraordinarily complex — it involves muscles, tendons, bones, joints, and the nervous system all working in precise coordination.</p>
+            </div>
+          </div>
+
+          <!-- S2 -->
+          <div class="section-block" id="s2">
+            <div class="section-eyebrow">Section 2</div>
+            <h2>Models of Human Locomotion</h2>
+            <p>Because real human movement is so complex, researchers use simplified mathematical models to understand the core mechanics.</p>
+
+            <h3>Walking Model — Inverted Pendulum</h3>
+            <p>During walking, the stance leg behaves like a rigid rod. The body's center of mass vaults over it, resembling an upside-down pendulum.</p>
+            <ul>
+              <li>Center of mass <strong>rises</strong> during mid-stance</li>
+              <li>Center of mass <strong>falls</strong> during double support</li>
+              <li>Energy continuously exchanges between kinetic and potential forms</li>
+            </ul>
+
+            <h3>Running Model — Spring-Mass</h3>
+            <p>Running cannot be described by an inverted pendulum. Instead, the leg acts like a spring:</p>
+            <ul>
+              <li>Leg <strong>compresses</strong> at ground contact — energy is stored</li>
+              <li>Leg <strong>recoils</strong> during push-off — energy is released</li>
+            </ul>
+            <div class="key-box">
+              <div class="key-box-label">Key Distinction</div>
+              <p>Walking uses the inverted pendulum; running uses the spring-mass model. The two gaits are mechanically distinct.</p>
+            </div>
+
+            <div class="fig-placeholder">
+              <div class="fig-inner">
+                <svg width="300" height="100" viewBox="0 0 300 100">
+                  <!-- Inverted pendulum left -->
+                  <line x1="60" y1="90" x2="60" y2="20" stroke="#F7F4EE" stroke-width="2.5" opacity="0.6"/>
+                  <circle cx="60" cy="13" r="10" fill="none" stroke="#F7F4EE" stroke-width="2" opacity="0.7"/>
+                  <ellipse cx="60" cy="90" rx="18" ry="5" fill="none" stroke="#F7F4EE" stroke-width="1" opacity="0.3"/>
+                  <text x="25" y="104" font-family="JetBrains Mono, monospace" font-size="8" fill="#F7F4EE" opacity="0.5">INV. PENDULUM</text>
+                  <!-- spring right -->
+                  <path d="M230,90 Q215,80 225,70 Q240,60 225,50 Q210,40 225,30 Q235,22 225,14" fill="none" stroke="#E8623C" stroke-width="2" opacity="0.7"/>
+                  <circle cx="225" cy="8" r="10" fill="none" stroke="#F7F4EE" stroke-width="2" opacity="0.6"/>
+                  <ellipse cx="228" cy="90" rx="18" ry="5" fill="none" stroke="#F7F4EE" stroke-width="1" opacity="0.3"/>
+                  <text x="192" y="104" font-family="JetBrains Mono, monospace" font-size="8" fill="#E8623C" opacity="0.7">SPRING-MASS</text>
+                  <!-- divider -->
+                  <line x1="148" y1="8" x2="148" y2="92" stroke="#F7F4EE" stroke-width="1" stroke-dasharray="3 3" opacity="0.2"/>
+                  <text x="90" y="52" font-family="JetBrains Mono, monospace" font-size="8" fill="#F7F4EE" opacity="0.3">WALK</text>
+                  <text x="158" y="52" font-family="JetBrains Mono, monospace" font-size="8" fill="#F7F4EE" opacity="0.3">RUN</text>
+                </svg>
+                <div class="fig-caption">Figure 2.1 — Inverted pendulum (walking) vs spring-mass (running) locomotion models</div>
+                <div class="fig-number">2.1</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- S3 -->
+          <div class="section-block" id="s3">
+            <div class="section-eyebrow">Section 3</div>
+            <h2>Walking vs Running</h2>
+            <div class="table-scroll"><table class="notes-table">
+              <thead>
+                <tr><th>Feature</th><th>Walking</th><th>Running</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Model</td><td>Inverted pendulum</td><td>Spring-mass</td></tr>
+                <tr><td>Double support</td><td>Present (~10–20%)</td><td>Absent</td></tr>
+                <tr><td>Flight phase</td><td>None</td><td>Present</td></tr>
+                <tr><td>Energy mechanism</td><td>PE ↔ KE exchange</td><td>Elastic energy storage</td></tr>
+                <tr><td>Efficiency</td><td>Higher at low speed</td><td>Higher at high speed</td></tr>
+              </tbody>
+            </table></div>
+            <div class="key-box">
+              <div class="key-box-label">Exam Tip</div>
+              <p>Walking always has a double support phase — this is the defining mechanical distinction from running.</p>
+            </div>
+          </div>
+
+          <!-- S4 -->
+          <div class="section-block" id="s4">
+            <div class="section-eyebrow">Section 4</div>
+            <h2>The Walking Gait Cycle</h2>
+            <p>The <strong>gait cycle</strong> is defined as the time between two successive contacts of the same foot — for example, right heel strike to the next right heel strike.</p>
+
+            <h3>Stance Phase (~60%)</h3>
+            <p>The foot remains in contact with the ground. Functions: support body weight, maintain balance, generate propulsion.</p>
+
+            <h3>Swing Phase (~40%)</h3>
+            <p>The foot moves through the air. Functions: advance the leg forward and prepare for the next ground contact.</p>
+
+            <div class="gait-bar">
+              <div class="gait-bar-track">
+                <div class="gait-stance"><span class="gait-bar-label">Stance — 60%</span></div>
+                <div class="gait-swing"><span class="gait-bar-label">Swing — 40%</span></div>
+              </div>
+              <div class="gait-bar-legend">
+                <div class="gait-legend-item"><div class="gait-swatch" style="background:var(--ink)"></div>Stance phase</div>
+                <div class="gait-legend-item"><div class="gait-swatch" style="background:var(--orange)"></div>Swing phase</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- S5 -->
+          <div class="section-block" id="s5">
+            <div class="section-eyebrow">Section 5</div>
+            <h2>Double Support</h2>
+            <p><strong>Double support</strong> is the brief period when both feet are simultaneously in contact with the ground. It occurs <strong>twice</strong> during every gait cycle.</p>
+            <p>Double support:</p>
+            <ul>
+              <li>Improves stability during weight transfer</li>
+              <li>Transfers body weight smoothly between limbs</li>
+              <li>Reduces energy loss at step transitions</li>
+              <li>Allows interaction between limbs for efficient propulsion</li>
+            </ul>
+            <div class="key-box">
+              <div class="key-box-label">Key Exam Point</div>
+              <p>Walking always includes a double support phase. Running does not — it has a flight phase instead.</p>
+            </div>
+          </div>
+
+          <!-- S6 -->
+          <div class="section-block" id="s6">
+            <div class="section-eyebrow">Section 6</div>
+            <h2>Spatial and Temporal Gait Parameters</h2>
+            <p>These measurements quantitatively describe walking mechanics.</p>
+
+            <h3>Cadence</h3>
+            <p>Number of steps per minute. Higher cadence generally correlates with faster walking speed.</p>
+
+            <h3>Step Length</h3>
+            <p>The distance between heel strike of one foot and heel strike of the <em>opposite</em> foot.</p>
+
+            <h3>Stride Length</h3>
+            <p>The distance between heel strike of one foot and the <em>next</em> heel strike of the <strong>same</strong> foot. Stride length = 2 × step length.</p>
+
+            <h3>Step Width</h3>
+            <p>Lateral distance between the feet. Critical for balance and stability assessment.</p>
+
+            <h3>Toe-Out Angle</h3>
+            <p>The angle between the direction of walking and the foot's orientation. Typical values: <strong>10–15°</strong>.</p>
+
+            <div class="table-scroll"><table class="notes-table">
+              <thead><tr><th>Parameter</th><th>Definition</th></tr></thead>
+              <tbody>
+                <tr><td>Cadence</td><td>Steps per minute</td></tr>
+                <tr><td>Step Length</td><td>Distance between opposite heel strikes</td></tr>
+                <tr><td>Stride Length</td><td>Distance between same-foot heel strikes (= 2 × step length)</td></tr>
+                <tr><td>Step Width</td><td>Lateral distance between feet</td></tr>
+                <tr><td>Toe-Out Angle</td><td>Foot angle relative to walking direction (~10–15°)</td></tr>
+              </tbody>
+            </table></div>
+          </div>
+
+          <!-- S7 -->
+          <div class="section-block" id="s7">
+            <div class="section-eyebrow">Section 7</div>
+            <h2>Ground Reaction Forces (GRF)</h2>
+            <p>The <strong>ground reaction force</strong> is the force exerted by the ground on the body. By Newton's Third Law, it is equal and opposite to the force the body exerts on the ground.</p>
+
+            <h3>A. Vertical GRF</h3>
+            <p>Acts upward, supporting body weight against gravity. During normal walking it produces a characteristic <strong>double-hump pattern</strong> — two peaks separated by a valley at mid-stance. Peak values typically exceed body weight.</p>
+
+            <h3>B. Anterior-Posterior GRF</h3>
+            <p>Acts along the direction of travel, controlling walking speed:</p>
+            <ul>
+              <li><strong>Early stance:</strong> negative (braking) — the body decelerates slightly as the heel strikes</li>
+              <li><strong>Late stance:</strong> positive (propulsive) — the foot pushes off to accelerate the body forward</li>
+            </ul>
+
+            <div class="fig-placeholder">
+              <div class="fig-inner">
+                <svg width="300" height="110" viewBox="0 0 300 110">
+                  <!-- axes -->
+                  <line x1="20" y1="90" x2="280" y2="90" stroke="#F7F4EE" stroke-width="1" opacity="0.3"/>
+                  <line x1="20" y1="10" x2="20" y2="90" stroke="#F7F4EE" stroke-width="1" opacity="0.3"/>
+                  <!-- body weight reference -->
+                  <line x1="20" y1="60" x2="280" y2="60" stroke="#F7F4EE" stroke-width="1" stroke-dasharray="4 3" opacity="0.25"/>
+                  <text x="22" y="57" font-family="JetBrains Mono, monospace" font-size="8" fill="#F7F4EE" opacity="0.4">BW</text>
+                  <!-- double hump GRF curve -->
+                  <path d="M20,90 Q55,30 100,50 Q130,62 150,70 Q170,60 210,30 Q250,50 280,90" fill="none" stroke="#E8623C" stroke-width="2.5" opacity="0.85"/>
+                  <!-- labels -->
+                  <text x="68" y="28" font-family="JetBrains Mono, monospace" font-size="8" fill="#E8623C" opacity="0.7">Peak 1</text>
+                  <text x="200" y="28" font-family="JetBrains Mono, monospace" font-size="8" fill="#E8623C" opacity="0.7">Peak 2</text>
+                  <text x="130" y="85" font-family="JetBrains Mono, monospace" font-size="8" fill="#F7F4EE" opacity="0.4">Mid-stance</text>
+                  <!-- x labels -->
+                  <text x="16" y="103" font-family="JetBrains Mono, monospace" font-size="8" fill="#F7F4EE" opacity="0.4">0%</text>
+                  <text x="136" y="103" font-family="JetBrains Mono, monospace" font-size="8" fill="#F7F4EE" opacity="0.4">50%</text>
+                  <text x="258" y="103" font-family="JetBrains Mono, monospace" font-size="8" fill="#F7F4EE" opacity="0.4">100%</text>
+                </svg>
+                <div class="fig-caption">Figure 2.2 — Vertical GRF double-hump pattern: two peaks above body weight with a valley at mid-stance</div>
+                <div class="fig-number">2.2</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- S8 -->
+          <div class="section-block" id="s8">
+            <div class="section-eyebrow">Section 8</div>
+            <h2>Force Plates</h2>
+            <p>Force plates measure ground reaction forces, moments, and the center of pressure beneath the foot during movement.</p>
+            <p>Requirements of high-quality force plates:</p>
+            <ul>
+              <li><strong>Minimal crosstalk</strong> — force in one axis must not contaminate readings in other axes</li>
+              <li><strong>Good frequency response</strong> — must capture rapid force changes (recommended ≥ 200 Hz)</li>
+              <li><strong>Position independence</strong> — readings must remain accurate regardless of where the foot lands on the plate</li>
+            </ul>
+            <div class="key-box">
+              <div class="key-box-label">Specification</div>
+              <p>Force plates should sample at ≥ 200 Hz to accurately capture the rapid transients in ground reaction force during walking and running.</p>
+            </div>
+          </div>
+
+          <!-- S9 -->
+          <div class="section-block" id="s9">
+            <div class="section-eyebrow">Section 9</div>
+            <h2>Newton's Second Law in Walking</h2>
+            <p>The fundamental equation of motion: <strong>F = ma</strong>, where F is force, m is mass, and a is acceleration.</p>
+            <p>Applying this law to GRF data, researchers can calculate:</p>
+            <div class="flow-diagram">
+              <div class="flow-steps">
+                <div class="flow-step">
+                  <div class="flow-num">1</div>
+                  <div class="flow-text"><strong>Measure GRF</strong><span>Record force via force plate at ≥ 200 Hz</span></div>
+                </div>
+                <div class="flow-step">
+                  <div class="flow-num">2</div>
+                  <div class="flow-text"><strong>Compute Acceleration</strong><span>Acceleration = Force / Mass (F = ma)</span></div>
+                </div>
+                <div class="flow-step">
+                  <div class="flow-num">3</div>
+                  <div class="flow-text"><strong>Integrate → Velocity</strong><span>Integrate acceleration over time</span></div>
+                </div>
+                <div class="flow-step">
+                  <div class="flow-num">4</div>
+                  <div class="flow-text"><strong>Integrate → Position</strong><span>Integrate velocity to recover COM trajectory</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- S10 -->
+          <div class="section-block" id="s10">
+            <div class="section-eyebrow">Section 10</div>
+            <h2>Center of Mass (COM)</h2>
+            <p>The <strong>center of mass</strong> is the point where the body's total mass is considered concentrated. During walking:</p>
+            <ul>
+              <li>COM moves <strong>up and down</strong> — rising at mid-stance, falling at double support</li>
+              <li>COM moves <strong>forward continuously</strong> throughout the cycle</li>
+            </ul>
+            <p>Tracking COM is essential for understanding stability, efficiency, and energy expenditure during locomotion.</p>
+          </div>
+
+          <!-- S11 -->
+          <div class="section-block" id="s11">
+            <div class="section-eyebrow">Section 11</div>
+            <h2>Energy in Walking</h2>
+            <p>Walking is surprisingly energy-efficient. The key reason is the continuous exchange between two forms of mechanical energy.</p>
+
+            <h3>Potential Energy (PE)</h3>
+            <p>PE = mgh. When the COM rises, potential energy increases.</p>
+
+            <h3>Kinetic Energy (KE)</h3>
+            <p>KE = ½mv². When the COM moves faster, kinetic energy increases.</p>
+
+            <div class="key-box">
+              <div class="key-box-label">Core Principle</div>
+              <p>During walking, potential and kinetic energy are nearly out of phase — when one rises, the other falls. This interchange reduces the muscular work required.</p>
+            </div>
+          </div>
+
+          <!-- S12 -->
+          <div class="section-block" id="s12">
+            <div class="section-eyebrow">Section 12</div>
+            <h2>Pendulum-Like Energy Exchange</h2>
+            <p>This is one of the most important concepts in Chapter 2.</p>
+            <div class="table-scroll"><table class="notes-table">
+              <thead><tr><th>Gait Event</th><th>COM Height</th><th>PE</th><th>KE</th></tr></thead>
+              <tbody>
+                <tr><td>Mid-Stance</td><td>Highest</td><td>Maximum</td><td>Minimum</td></tr>
+                <tr><td>Double Support</td><td>Lowest</td><td>Minimum</td><td>Maximum</td></tr>
+              </tbody>
+            </table></div>
+            <p>Energy continuously converts between PE and KE — exactly like a ball rolling over hills or a pendulum swinging. This mechanism means muscles must do <strong>far less work</strong> than if they had to power every step from scratch.</p>
+
+            <div class="fig-placeholder">
+              <div class="fig-inner">
+                <svg width="300" height="110" viewBox="0 0 300 110">
+                  <!-- hill curve for COM height -->
+                  <path d="M20,80 Q80,20 150,80 Q220,20 280,80" fill="none" stroke="#F7F4EE" stroke-width="2" opacity="0.5"/>
+                  <!-- KE curve (inverted) -->
+                  <path d="M20,30 Q80,80 150,30 Q220,80 280,30" fill="none" stroke="#E8623C" stroke-width="2" opacity="0.7"/>
+                  <!-- labels -->
+                  <text x="115" y="18" font-family="JetBrains Mono, monospace" font-size="8" fill="#F7F4EE" opacity="0.55" letter-spacing="0.08em">PE (white)</text>
+                  <text x="115" y="100" font-family="JetBrains Mono, monospace" font-size="8" fill="#E8623C" opacity="0.7" letter-spacing="0.08em">KE (orange)</text>
+                  <text x="22" y="95" font-family="JetBrains Mono, monospace" font-size="8" fill="#F7F4EE" opacity="0.3">HS</text>
+                  <text x="140" y="95" font-family="JetBrains Mono, monospace" font-size="8" fill="#F7F4EE" opacity="0.3">MS</text>
+                  <text x="263" y="95" font-family="JetBrains Mono, monospace" font-size="8" fill="#F7F4EE" opacity="0.3">HS</text>
+                </svg>
+                <div class="fig-caption">Figure 2.3 — Potential and kinetic energy are out of phase during walking, reducing muscular work (HS = heel strike, MS = mid-stance)</div>
+                <div class="fig-number">2.3</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- S13 -->
+          <div class="section-block" id="s13">
+            <div class="section-eyebrow">Section 13</div>
+            <h2>Ballistic Walking Model</h2>
+            <p>Developed by <strong>Tom McMahon</strong>, this model combines:</p>
+            <ul>
+              <li>An <strong>inverted pendulum</strong> for the stance leg</li>
+              <li>A <strong>compound pendulum</strong> for the swing leg</li>
+            </ul>
+            <p>The model emphasizes gravity and passive motion — the legs swing largely under gravity's influence. However, it does not fully explain the energy dynamics at step-to-step transitions.</p>
+          </div>
+
+          <!-- S14 -->
+          <div class="section-block" id="s14">
+            <div class="section-eyebrow">Section 14</div>
+            <h2>Dynamic Walking Model</h2>
+            <p>Developed by <strong>Art Kuo</strong> and <strong>Max Donelan</strong>, inspired by the passive-dynamic walking work of <strong>Tad McGeer</strong>.</p>
+            <p>Improvements over earlier models:</p>
+            <ul>
+              <li>Explains <strong>step-to-step transitions</strong> and energy loss</li>
+              <li>Describes <strong>passive dynamic walking</strong> — robots and models that walk without active control</li>
+              <li>Produces more realistic gait mechanics</li>
+            </ul>
+            <div class="key-box">
+              <div class="key-box-label">Significance</div>
+              <p>The dynamic walking model is one of the most influential modern frameworks for understanding human gait efficiency and the cost of walking.</p>
+            </div>
+          </div>
+
+          <!-- S15 -->
+          <div class="section-block" id="s15">
+            <div class="section-eyebrow">Section 15</div>
+            <h2>Gait Transitions — Walking to Running</h2>
+            <p>Why do humans spontaneously switch from walking to running at a certain speed?</p>
+            <ul>
+              <li>At <strong>low speeds</strong>, walking is more energetically efficient (inverted pendulum mechanism works well)</li>
+              <li>At <strong>high speeds</strong>, the inverted pendulum becomes energetically unfavorable — the COM cannot travel fast enough</li>
+              <li>The <strong>spring-mass</strong> mechanism of running becomes more efficient</li>
+            </ul>
+            <p>Humans naturally transition to running at approximately <strong>2 m/s</strong> — the speed at which walking costs more energy than running.</p>
+          </div>
+
+          <!-- S16 -->
+          <div class="section-block" id="s16">
+            <div class="section-eyebrow">Section 16</div>
+            <h2>Limitations of Simple Locomotion Models</h2>
+            <p>Despite their power, simple models ignore many real structures that contribute to movement:</p>
+            <ul>
+              <li><strong>Muscles</strong> and their force-generating properties</li>
+              <li><strong>Tendons</strong> and elastic energy storage</li>
+              <li><strong>Arms</strong> and torso — upper body contributes to balance and momentum</li>
+              <li><strong>Neural control</strong> — the nervous system continuously adapts movement</li>
+            </ul>
+            <div class="key-box">
+              <div class="key-box-label">Looking Ahead</div>
+              <p>Later chapters address these missing structures through muscle models, musculoskeletal geometry, and neural control, building toward full muscle-driven simulations.</p>
+            </div>
+          </div>
+
+          <!-- EXAM QUICK REVIEW -->
+          <div class="section-block" id="sexam">
+            <div class="section-eyebrow">Exam-Focused Quick Review</div>
+            <h2>Key Definitions</h2>
+            <div class="table-scroll"><table class="notes-table">
+              <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+              <tbody>
+                <tr><td>Locomotion</td><td>Movement of the body from one place to another</td></tr>
+                <tr><td>Gait Cycle</td><td>Time between successive contacts of the same foot</td></tr>
+                <tr><td>Stance Phase</td><td>Foot on ground (~60% of gait cycle)</td></tr>
+                <tr><td>Swing Phase</td><td>Foot in air (~40% of gait cycle)</td></tr>
+                <tr><td>Double Support</td><td>Both feet on ground simultaneously</td></tr>
+                <tr><td>GRF</td><td>Force the ground exerts on the body (Newton's 3rd Law)</td></tr>
+                <tr><td>COM</td><td>Point where body mass is concentrated</td></tr>
+                <tr><td>Cadence</td><td>Number of steps per minute</td></tr>
+                <tr><td>Stride Length</td><td>Distance between consecutive contacts of the same foot</td></tr>
+                <tr><td>Step Length</td><td>Distance between opposite foot contacts</td></tr>
+              </tbody>
+            </table></div>
+
+            <h2 style="margin-top:32px;">Key Models</h2>
+            <div class="table-scroll"><table class="notes-table">
+              <thead><tr><th>Gait</th><th>Model</th><th>Key Idea</th></tr></thead>
+              <tbody>
+                <tr><td>Walking</td><td>Inverted Pendulum</td><td>COM vaults over stance leg; PE ↔ KE exchange</td></tr>
+                <tr><td>Running</td><td>Spring-Mass</td><td>Leg stores and releases elastic energy each stride</td></tr>
+              </tbody>
+            </table></div>
+
+            <h2 style="margin-top:32px;">Exam Table</h2>
+            <div class="table-scroll"><table class="notes-table">
+              <thead><tr><th>Topic</th><th>Key Fact</th></tr></thead>
+              <tbody>
+                <tr><td>Stance</td><td>~60% of gait cycle</td></tr>
+                <tr><td>Swing</td><td>~40% of gait cycle</td></tr>
+                <tr><td>Double support</td><td>Unique to walking (absent in running)</td></tr>
+                <tr><td>Vertical GRF</td><td>Double-hump curve; exceeds body weight</td></tr>
+                <tr><td>Force plate rate</td><td>≥ 200 Hz</td></tr>
+                <tr><td>Mid-stance energy</td><td>PE max, KE min</td></tr>
+                <tr><td>Double support energy</td><td>PE min, KE max</td></tr>
+                <tr><td>Toe-out angle</td><td>10–15°</td></tr>
+                <tr><td>Walk→Run transition</td><td>~2 m/s; running becomes more efficient</td></tr>
+              </tbody>
+            </table></div>
+
+            <div class="key-box" style="margin-top:32px;">
+              <div class="key-box-label">Most Important Takeaway</div>
+              <p>Human walking can be modeled as an inverted pendulum where the COM exchanges kinetic and potential energy efficiently. Ground reaction forces measured by force plates, combined with Newton's laws, allow biomechanists to quantify gait mechanics — while the dynamic walking model explains step-to-step transitions and why humans switch to running at higher speeds.</p>
+            </div>
+          </div>
+
+        </div><!-- /notes-content -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== MCQ PANEL ========== -->
+  <div id="panel-mcq" class="panel">
+    <div class="container" style="max-width:740px;">
+      <div class="activity-header">
+        <div class="ch-eyebrow">Multiple Choice</div>
+        <h2>Test Your Understanding</h2>
+        <p>10 questions · timed · graded</p>
+      </div>
+
+      <div id="mcq-start-screen">
+        <div style="background:#fff;border:1px solid var(--line);border-radius:4px;padding:40px;text-align:center;max-width:480px;margin:0 auto;">
+          <div style="font-family:'Fraunces',serif;font-size:48px;font-weight:300;color:var(--orange);line-height:1;">10:00</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.2em;color:#9a9484;margin-bottom:24px;">Time limit</div>
+          <p style="font-size:15px;color:#6a6a6a;margin-bottom:28px;">Answer all 10 questions before the timer runs out. Each correct answer is worth 1 point.</p>
+          <button class="btn-primary" onclick="startMCQ()">Start Quiz →</button>
+        </div>
+      </div>
+
+      <div id="mcq-quiz-screen" style="display:none;">
+        <div class="quiz-toolbar">
+          <div class="timer-badge">
+            <div class="timer-dot"></div>
+            <div>
+              <div class="timer-label">Time Remaining</div>
+              <span id="mcq-timer">10:00</span>
+            </div>
+          </div>
+          <div class="progress-bar-wrap">
+            <div class="progress-label">Progress — <span id="mcq-progress-text">0 / 10</span></div>
+            <div class="progress-bar"><div class="progress-fill" id="mcq-progress-fill" style="width:0%"></div></div>
+          </div>
+        </div>
+        <div id="mcq-questions"></div>
+        <div class="quiz-nav">
+          <span></span>
+          <button class="btn-primary" onclick="submitMCQ()">Submit Answers →</button>
+        </div>
+      </div>
+
+      <div class="score-screen" id="mcq-score-screen">
+        <div class="score-circle">
+          <div class="score-num" id="mcq-score-num">—</div>
+          <div class="score-denom">/ 10</div>
+        </div>
+        <div class="score-grade" id="mcq-grade"></div>
+        <div class="score-msg" id="mcq-msg"></div>
+        <div class="score-stats">
+          <div class="stat-item"><strong id="mcq-correct-count">—</strong>Correct</div>
+          <div class="stat-item"><strong id="mcq-wrong-count">—</strong>Wrong</div>
+          <div class="stat-item"><strong id="mcq-time-used">—</strong>Time used</div>
+        </div>
+        <button class="btn-primary" onclick="resetMCQ()">Try Again</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== FILL IN THE BLANK PANEL ========== -->
+  <div id="panel-fitb" class="panel">
+    <div class="container" style="max-width:740px;">
+      <div class="activity-header">
+        <div class="ch-eyebrow">Fill in the Blank</div>
+        <h2>Complete the Statements</h2>
+        <p>8 sentences — type the missing term, then check your answer</p>
+      </div>
+      <div class="quiz-toolbar">
+        <div class="timer-badge">
+          <div class="timer-dot"></div>
+          <div>
+            <div class="timer-label">Elapsed</div>
+            <span id="fitb-timer">00:00</span>
+          </div>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-label">Completed — <span id="fitb-progress-text">0 / 8</span></div>
+          <div class="progress-bar"><div class="progress-fill" id="fitb-progress-fill" style="width:0%"></div></div>
+        </div>
+      </div>
+      <div id="fitb-questions"></div>
+      <div style="margin-top:32px;text-align:right;">
+        <button class="btn-primary" onclick="showFITBScore()">See Score →</button>
+      </div>
+      <div class="score-screen" id="fitb-score-screen">
+        <div class="score-circle">
+          <div class="score-num" id="fitb-score-num">—</div>
+          <div class="score-denom">/ 8</div>
+        </div>
+        <div class="score-grade" id="fitb-grade"></div>
+        <div class="score-msg" id="fitb-msg"></div>
+        <div class="score-stats">
+          <div class="stat-item"><strong id="fitb-correct-count">—</strong>Correct</div>
+          <div class="stat-item"><strong id="fitb-wrong-count">—</strong>Wrong</div>
+          <div class="stat-item"><strong id="fitb-time-used">—</strong>Time (mm:ss)</div>
+        </div>
+        <button class="btn-primary" onclick="resetFITB()">Try Again</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== FLASHCARDS PANEL ========== -->
+  <div id="panel-flash" class="panel">
+    <div class="container" style="max-width:680px;">
+      <div class="activity-header">
+        <div class="ch-eyebrow">Flashcards</div>
+        <h2>Drill the Key Terms</h2>
+        <p>16 cards — tap to reveal, then mark Know it or Study again</p>
+      </div>
+      <div class="flashcard-area">
+        <div class="fc-deck-info">
+          <div class="fc-deck-label">Chapter 02 — Walking Biomechanics</div>
+          <div class="fc-counter"><span id="fc-current">1</span> / <span id="fc-total">16</span></div>
+        </div>
+        <div class="fc-card" id="fc-card" onclick="flipCard()">
+          <div class="fc-inner">
+            <div class="fc-face fc-front">
+              <div class="fc-tag">Term / Concept</div>
+              <div class="fc-question" id="fc-question">Loading…</div>
+              <div class="fc-flip-hint">tap to flip →</div>
+            </div>
+            <div class="fc-face fc-back">
+              <div class="fc-tag">Answer</div>
+              <div class="fc-answer" id="fc-answer">—</div>
+              <div class="fc-flip-hint">← tap to flip back</div>
+            </div>
+          </div>
+        </div>
+        <div class="fc-controls">
+          <button class="fc-again" onclick="fcMark('again')">✗ Study Again</button>
+          <button class="fc-skip" onclick="fcMark('skip')">→ Skip</button>
+          <button class="fc-know" onclick="fcMark('known')">✓ Know it</button>
+        </div>
+        <div class="fc-progress-dots" id="fc-dots"></div>
+        <div class="fc-score-bar">
+          <div class="fc-score-item s-known"><strong id="fc-known-count">0</strong>Know it</div>
+          <div class="fc-score-item"><strong id="fc-skip-count">0</strong>Skipped</div>
+          <div class="fc-score-item s-again"><strong id="fc-again-count">0</strong>Study Again</div>
+        </div>
+        <div class="fc-complete" id="fc-complete">
+          <div style="font-family:'Fraunces',serif;font-size:36px;font-weight:500;color:var(--ink);margin-bottom:8px;">Deck Complete</div>
+          <p style="font-size:15px;color:#6a6a6a;margin-bottom:28px;">You reviewed all 16 cards.</p>
+          <button class="btn-primary" onclick="resetFlash()">Restart Deck</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">Biomechanics of Movement &mdash; Ch. 02 · Based on the book by Uchida, Delp &amp; Delp (MIT Press)</div>
+  </footer>
+
+  <script>
+    // ============ TOC TOGGLE (mobile/tablet) ============
+    function toggleTOC() {
+      const btn = document.getElementById('toc-toggle-btn');
+      const drawer = document.getElementById('toc-drawer');
+      const isOpen = drawer.classList.contains('open');
+      drawer.classList.toggle('open', !isOpen);
+      btn.classList.toggle('open', !isOpen);
+      btn.setAttribute('aria-expanded', String(!isOpen));
+    }
+    function closeTOC() {
+      const btn = document.getElementById('toc-toggle-btn');
+      const drawer = document.getElementById('toc-drawer');
+      drawer.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+
+    // ============ PANEL SWITCHING ============
+    function switchPanel(id, btn) {
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.mode-tab').forEach(t => t.classList.remove('active'));
+      document.getElementById('panel-' + id).classList.add('active');
+      btn.classList.add('active');
+      if (id !== 'notes') closeTOC();
+      if (id === 'fitb' && !fitbTimerStarted) { startFITBTimer(); fitbTimerStarted = true; }
+      if (id === 'flash' && !flashInit) { initFlash(); flashInit = true; }
+    }
+
+    // ============ MCQ DATA ============
+    const mcqData = [
+      {
+        q: "What is the gait cycle defined as?",
+        opts: ["The time between left heel strike and right heel strike","The time between two successive contacts of the same foot","One complete swing phase of both legs","The duration from toe-off to mid-stance"],
+        ans: 1, exp: "The gait cycle spans from one heel strike of a given foot to the next heel strike of that same foot — e.g. right heel strike to right heel strike."
+      },
+      {
+        q: "What percentage of the gait cycle is the stance phase?",
+        opts: ["40%","50%","60%","75%"],
+        ans: 2, exp: "The stance phase (foot on the ground) occupies approximately 60% of the gait cycle, while the swing phase accounts for the remaining ~40%."
+      },
+      {
+        q: "Which model best describes walking mechanics?",
+        opts: ["Spring-mass model","Double pendulum","Inverted pendulum","Rolling wheel model"],
+        ans: 2, exp: "Walking is modeled as an inverted pendulum — the body vaults over a stiff stance leg, continuously exchanging kinetic and potential energy."
+      },
+      {
+        q: "What is double support in walking?",
+        opts: ["Two legs swinging simultaneously","Both feet in contact with the ground at the same time","The period when neither foot is on the ground","Two consecutive steps taken at the same speed"],
+        ans: 1, exp: "Double support is the phase when both feet are simultaneously in contact with the ground. It occurs twice per gait cycle and is absent in running."
+      },
+      {
+        q: "During mid-stance of walking, which statement is correct?",
+        opts: ["Kinetic energy is maximum, potential energy is minimum","Both energies are equal","Potential energy is maximum, kinetic energy is minimum","Both energies are at zero"],
+        ans: 2, exp: "At mid-stance the COM is at its highest point — potential energy is maximized while kinetic energy (walking speed) is at its minimum."
+      },
+      {
+        q: "What does the vertical ground reaction force pattern look like during walking?",
+        opts: ["A single peak at mid-stance","A flat line equal to body weight","A double-hump curve with two peaks above body weight","A single trough below body weight"],
+        ans: 2, exp: "The vertical GRF shows a characteristic double-hump pattern — two peaks (at heel strike and push-off) exceeding body weight, separated by a valley at mid-stance."
+      },
+      {
+        q: "Stride length is defined as:",
+        opts: ["The distance between the heel of one foot and the toe of the other","The lateral distance between the two feet","The distance between consecutive contacts of the same foot","The distance between opposite heel strikes"],
+        ans: 2, exp: "Stride length is the distance between successive heel contacts of the same foot. It equals 2 × step length."
+      },
+      {
+        q: "What minimum sampling rate is recommended for force plates?",
+        opts: ["50 Hz","100 Hz","200 Hz","500 Hz"],
+        ans: 2, exp: "Force plates should sample at ≥ 200 Hz to accurately capture the rapid force transients during walking and running."
+      },
+      {
+        q: "Why do humans transition from walking to running at higher speeds?",
+        opts: ["Running is slower and more stable","The inverted pendulum mechanism becomes energetically favorable at high speed","Walking becomes energetically unfavorable and the spring-mass mechanism is more efficient","The stance phase lengthens until running begins"],
+        ans: 2, exp: "At high speeds the inverted pendulum mechanism can no longer operate efficiently. The spring-mass mechanism of running is energetically cheaper, so humans spontaneously transition to running."
+      },
+      {
+        q: "The spring-mass model of running stores energy in which component?",
+        opts: ["The pelvis during rotation","The compressed leg acting as a spring","The arms during the forward swing","The trunk muscles during mid-flight"],
+        ans: 1, exp: "In the spring-mass model the leg compresses at ground contact, storing elastic energy, then recoils during push-off to release it — like a spring."
+      }
+    ];
+
+    let mcqTimer, mcqSeconds = 600, mcqStartTime, mcqAnswers = {}, mcqSubmitted = false;
+
+    function startMCQ() {
+      document.getElementById('mcq-start-screen').style.display = 'none';
+      document.getElementById('mcq-quiz-screen').style.display = 'block';
+      buildMCQ();
+      mcqStartTime = Date.now();
+      mcqTimer = setInterval(tickMCQ, 1000);
+    }
+    function buildMCQ() {
+      const wrap = document.getElementById('mcq-questions');
+      wrap.innerHTML = '';
+      mcqData.forEach((q, i) => {
+        const keys = ['A','B','C','D'];
+        const opts = q.opts.map((o, j) => `<button class="option-btn" id="opt-${i}-${j}" onclick="selectOpt(${i},${j})"><span class="option-key">${keys[j]}</span>${o}</button>`).join('');
+        wrap.innerHTML += `<div class="question-block"><div class="q-number">Question ${i+1} of ${mcqData.length}</div><div class="q-text">${q.q}</div><div class="options">${opts}</div><div class="feedback-msg" id="fb-${i}"></div></div>`;
+      });
+    }
+    function selectOpt(qi, oi) {
+      if (mcqSubmitted) return;
+      mcqData[qi].opts.forEach((_, j) => { document.getElementById(`opt-${qi}-${j}`).style.background = ''; document.getElementById(`opt-${qi}-${j}`).style.borderColor = ''; });
+      document.getElementById(`opt-${qi}-${oi}`).style.borderColor = 'var(--ink)';
+      document.getElementById(`opt-${qi}-${oi}`).style.background = '#fff';
+      mcqAnswers[qi] = oi;
+      const answered = Object.keys(mcqAnswers).length;
+      document.getElementById('mcq-progress-text').textContent = `${answered} / ${mcqData.length}`;
+      document.getElementById('mcq-progress-fill').style.width = `${(answered / mcqData.length) * 100}%`;
+    }
+    function tickMCQ() {
+      mcqSeconds--;
+      if (mcqSeconds <= 0) { mcqSeconds = 0; clearInterval(mcqTimer); submitMCQ(); }
+      const m = Math.floor(mcqSeconds / 60).toString().padStart(2,'0');
+      const s = (mcqSeconds % 60).toString().padStart(2,'0');
+      document.getElementById('mcq-timer').textContent = `${m}:${s}`;
+    }
+    function submitMCQ() {
+      clearInterval(mcqTimer);
+      mcqSubmitted = true;
+      let correct = 0;
+      mcqData.forEach((q, i) => {
+        const sel = mcqAnswers[i];
+        const fb = document.getElementById(`fb-${i}`);
+        q.opts.forEach((_, j) => { const btn = document.getElementById(`opt-${i}-${j}`); btn.disabled = true; btn.style.background = ''; btn.style.borderColor = ''; });
+        if (sel === undefined) {
+          document.getElementById(`opt-${i}-${q.ans}`).className = 'option-btn wrong';
+          fb.textContent = 'Not answered. Correct: ' + String.fromCharCode(65+q.ans) + '. ' + q.exp;
+          fb.className = 'feedback-msg show bad';
+        } else if (sel === q.ans) {
+          document.getElementById(`opt-${i}-${sel}`).className = 'option-btn correct';
+          fb.textContent = '✓ Correct! ' + q.exp;
+          fb.className = 'feedback-msg show ok';
+          correct++;
+        } else {
+          document.getElementById(`opt-${i}-${sel}`).className = 'option-btn wrong';
+          document.getElementById(`opt-${i}-${q.ans}`).className = 'option-btn correct';
+          fb.textContent = '✗ Incorrect. Correct: ' + String.fromCharCode(65+q.ans) + '. ' + q.exp;
+          fb.className = 'feedback-msg show bad';
+        }
+      });
+      const elapsed = Math.round((Date.now() - mcqStartTime) / 1000);
+      const em = Math.floor(elapsed/60).toString().padStart(2,'0');
+      const es = (elapsed%60).toString().padStart(2,'0');
+      setTimeout(() => {
+        document.getElementById('mcq-quiz-screen').style.display = 'none';
+        const sc = document.getElementById('mcq-score-screen');
+        sc.classList.add('show');
+        document.getElementById('mcq-score-num').textContent = correct;
+        document.getElementById('mcq-correct-count').textContent = correct;
+        document.getElementById('mcq-wrong-count').textContent = mcqData.length - correct;
+        document.getElementById('mcq-time-used').textContent = `${em}:${es}`;
+        const pct = (correct / mcqData.length) * 100;
+        let grade, msg;
+        if (pct >= 90) { grade = 'Excellent — A'; msg = "Outstanding command of Chapter 2. You understand gait mechanics deeply."; }
+        else if (pct >= 75) { grade = 'Good — B'; msg = "Solid understanding. Review the questions you missed."; }
+        else if (pct >= 60) { grade = 'Pass — C'; msg = "You have the basics. Re-read sections on GRF and energy exchange."; }
+        else { grade = 'Needs Work — D'; msg = "Go back to the study notes, particularly the gait cycle and locomotion models."; }
+        document.getElementById('mcq-grade').textContent = grade;
+        document.getElementById('mcq-msg').textContent = msg;
+      }, 600);
+    }
+    function resetMCQ() {
+      mcqSeconds = 600; mcqAnswers = {}; mcqSubmitted = false;
+      document.getElementById('mcq-score-screen').classList.remove('show');
+      document.getElementById('mcq-start-screen').style.display = '';
+    }
+
+    // ============ FILL IN THE BLANK ============
+    const fitbData = [
+      { before: "The ", blank: "gait cycle", after: " is defined as the time between two successive contacts of the same foot.", hint: "Two words. Relates to the repeating pattern of walking steps." },
+      { before: "The stance phase accounts for approximately ", blank: "60", after: "% of the gait cycle, while the swing phase accounts for ~40%.", hint: "A number between 50 and 70." },
+      { before: "Walking is modeled as an ", blank: "inverted pendulum", after: ", where the body vaults over a stiff stance leg.", hint: "Two words. Think of a pendulum turned upside-down." },
+      { before: "Running uses a ", blank: "spring-mass", after: " model — the leg compresses at ground contact and recoils at push-off.", hint: "Two words separated by a hyphen." },
+      { before: "The period when both feet are simultaneously on the ground is called ", blank: "double support", after: ", and it is absent in running.", hint: "Two words. The number of limbs on the ground at once." },
+      { before: "At mid-stance, the body's center of mass is at its highest point, so potential energy is at a maximum and kinetic energy is at a ", blank: "minimum", after: ".", hint: "The opposite of maximum." },
+      { before: "Force plates should sample at a minimum frequency of ", blank: "200", after: " Hz to accurately capture ground reaction force transients.", hint: "A three-digit number." },
+      { before: "Stride length equals two times the ", blank: "step length", after: ", where step length is measured between opposite heel strikes.", hint: "Two words. The shorter distance measure in gait." }
+    ];
+
+    let fitbTimerStarted = false, fitbElapsed = 0, fitbTimerRef = null, fitbChecked = {};
+
+    function buildFITB() {
+      const wrap = document.getElementById('fitb-questions');
+      wrap.innerHTML = '';
+      fitbData.forEach((item, i) => {
+        wrap.innerHTML += `<div class="fitb-question">
+          <div class="q-number">Statement ${i+1} of ${fitbData.length}</div>
+          <div class="fitb-q-text">${item.before}<span style="color:var(--orange)">▢</span>${item.after}</div>
+          <div class="fitb-input-wrap">
+            <input class="fitb-input" id="fitb-inp-${i}" type="text" placeholder="Type your answer…" autocomplete="off" onkeydown="if(event.key==='Enter')checkFITB(${i})">
+            <button class="check-btn" onclick="checkFITB(${i})">Check</button>
+            <button class="check-btn" onclick="showHint(${i})" style="color:#9a9484;">Hint</button>
+          </div>
+          <div class="fitb-hint" id="fitb-hint-${i}">💡 ${item.hint}</div>
+          <div class="fitb-answer" id="fitb-ans-${i}"></div>
+        </div>`;
+      });
+    }
+    function showHint(i) { document.getElementById('fitb-hint-' + i).classList.add('show'); }
+    function checkFITB(i) {
+      const inp = document.getElementById('fitb-inp-' + i);
+      const userVal = inp.value.trim().toLowerCase();
+      const correctVal = fitbData[i].blank.toLowerCase();
+      const ansDiv = document.getElementById('fitb-ans-' + i);
+      if (!userVal || fitbChecked[i]) return;
+      fitbChecked[i] = true;
+      const isCorrect = userVal === correctVal || (correctVal.includes(userVal) && userVal.length > 3);
+      if (isCorrect) {
+        inp.className = 'fitb-input correct';
+        ansDiv.textContent = '✓ Correct!';
+        ansDiv.className = 'fitb-answer show';
+        ansDiv.style.color = 'var(--green)';
+      } else {
+        inp.className = 'fitb-input wrong';
+        ansDiv.textContent = `✗ The answer is: ${fitbData[i].blank}`;
+        ansDiv.className = 'fitb-answer show';
+        ansDiv.style.color = 'var(--red)';
+        inp.value = fitbData[i].blank;
+      }
+      const done = Object.keys(fitbChecked).length;
+      document.getElementById('fitb-progress-text').textContent = `${done} / ${fitbData.length}`;
+      document.getElementById('fitb-progress-fill').style.width = `${(done / fitbData.length) * 100}%`;
+    }
+    function startFITBTimer() {
+      buildFITB();
+      fitbTimerRef = setInterval(() => {
+        fitbElapsed++;
+        const m = Math.floor(fitbElapsed/60).toString().padStart(2,'0');
+        const s = (fitbElapsed%60).toString().padStart(2,'0');
+        document.getElementById('fitb-timer').textContent = `${m}:${s}`;
+      }, 1000);
+    }
+    function showFITBScore() {
+      fitbData.forEach((_, i) => { if (!fitbChecked[i]) checkFITB(i); });
+      clearInterval(fitbTimerRef);
+      let c = 0;
+      fitbData.forEach((_, i) => { const inp = document.getElementById('fitb-inp-' + i); if (inp && inp.classList.contains('correct')) c++; });
+      const m = Math.floor(fitbElapsed/60).toString().padStart(2,'0');
+      const s = (fitbElapsed%60).toString().padStart(2,'0');
+      document.getElementById('fitb-score-num').textContent = c;
+      document.getElementById('fitb-correct-count').textContent = c;
+      document.getElementById('fitb-wrong-count').textContent = fitbData.length - c;
+      document.getElementById('fitb-time-used').textContent = `${m}:${s}`;
+      const pct = (c / fitbData.length) * 100;
+      let grade, msg;
+      if (pct >= 90) { grade = 'Excellent — A'; msg = "You know the key walking biomechanics terms cold."; }
+      else if (pct >= 75) { grade = 'Good — B'; msg = "Mostly correct — review any terms you missed."; }
+      else if (pct >= 60) { grade = 'Pass — C'; msg = "Getting there — re-read sections on the gait cycle and GRF."; }
+      else { grade = 'Needs Work — D'; msg = "Focus on the key definitions in the study notes."; }
+      document.getElementById('fitb-grade').textContent = grade;
+      document.getElementById('fitb-msg').textContent = msg;
+      document.getElementById('fitb-score-screen').classList.add('show');
+    }
+    function resetFITB() {
+      fitbChecked = {}; fitbElapsed = 0; fitbTimerStarted = false;
+      clearInterval(fitbTimerRef);
+      document.getElementById('fitb-score-screen').classList.remove('show');
+      document.getElementById('fitb-timer').textContent = '00:00';
+      document.getElementById('fitb-progress-text').textContent = '0 / 8';
+      document.getElementById('fitb-progress-fill').style.width = '0%';
+      buildFITB();
+      startFITBTimer(); fitbTimerStarted = true;
+    }
+
+    // ============ FLASHCARDS ============
+    const flashData = [
+      { q: "Define: Gait Cycle", a: "<strong>Gait Cycle</strong> — the time between two successive contacts of the same foot (e.g. right heel strike to right heel strike)." },
+      { q: "What are the two phases of the gait cycle and their durations?", a: "<strong>Stance phase</strong> (~60%) — foot on the ground. <strong>Swing phase</strong> (~40%) — foot in the air." },
+      { q: "What is double support?", a: "<strong>Double support</strong> — the period when both feet are simultaneously in contact with the ground. Occurs twice per gait cycle; absent in running." },
+      { q: "Which model describes walking?", a: "<strong>Inverted Pendulum</strong> — the body vaults over a stiff stance leg, continuously exchanging kinetic and potential energy." },
+      { q: "Which model describes running?", a: "<strong>Spring-Mass Model</strong> — the leg acts as a spring, compressing at ground contact to store energy and recoiling at push-off to release it." },
+      { q: "What is Ground Reaction Force (GRF)?", a: "<strong>GRF</strong> — the force the ground exerts on the body. Equal and opposite to the force the body exerts on the ground (Newton's 3rd Law)." },
+      { q: "Describe the vertical GRF pattern during walking.", a: "A <strong>double-hump curve</strong> — two peaks above body weight (at heel strike and push-off) separated by a valley at mid-stance." },
+      { q: "What energy state exists at mid-stance?", a: "COM is at its <strong>highest point</strong> — Potential Energy is maximum, Kinetic Energy is minimum." },
+      { q: "What energy state exists at double support?", a: "COM is at its <strong>lowest point</strong> — Kinetic Energy is maximum, Potential Energy is minimum." },
+      { q: "Define: Cadence", a: "<strong>Cadence</strong> — number of steps per minute. Higher cadence generally correlates with faster walking speed." },
+      { q: "Distinguish step length from stride length.", a: "<strong>Step length</strong>: distance between opposite heel strikes. <strong>Stride length</strong>: distance between same-foot heel strikes = 2 × step length." },
+      { q: "What is the minimum recommended force plate sampling rate?", a: "≥ <strong>200 Hz</strong>, to accurately capture rapid force transients during walking and running." },
+      { q: "Why does walking transition to running at higher speeds?", a: "The <strong>inverted pendulum</strong> becomes energetically unfavorable at high speed; the <strong>spring-mass</strong> mechanism of running is more efficient (~2 m/s transition)." },
+      { q: "What is the typical toe-out angle during walking?", a: "<strong>10–15°</strong> — the angle between the direction of travel and the foot orientation." },
+      { q: "Who developed the Dynamic Walking Model?", a: "<strong>Art Kuo</strong> and <strong>Max Donelan</strong>, inspired by Tad McGeer's passive dynamic walking work. It explains step-to-step transitions and gait efficiency." },
+      { q: "Name three limitations of simple locomotion models.", a: "They ignore: (1) <strong>muscles</strong> and tendons, (2) <strong>arms and torso</strong>, (3) <strong>neural control</strong>. Addressed in later chapters." }
+    ];
+
+    let flashInit = false, fcIdx = 0, fcState = [], fcKnown = 0, fcAgain = 0, fcSkipped = 0;
+
+    function initFlash() {
+      fcState = flashData.map(() => 'unseen');
+      fcIdx = 0; fcKnown = 0; fcAgain = 0; fcSkipped = 0;
+      document.getElementById('fc-total').textContent = flashData.length;
+      buildDots(); showCard();
+    }
+    function buildDots() {
+      const wrap = document.getElementById('fc-dots');
+      wrap.innerHTML = flashData.map((_, i) => `<div class="fc-dot" id="fc-dot-${i}"></div>`).join('');
+    }
+    function showCard() {
+      const card = document.getElementById('fc-card');
+      card.classList.remove('flipped');
+      if (fcIdx >= flashData.length) {
+        card.style.display = 'none';
+        document.querySelector('.fc-controls').style.display = 'none';
+        document.getElementById('fc-complete').classList.add('show');
+        return;
+      }
+      document.getElementById('fc-question').textContent = flashData[fcIdx].q;
+      document.getElementById('fc-answer').innerHTML = flashData[fcIdx].a;
+      document.getElementById('fc-current').textContent = fcIdx + 1;
+      flashData.forEach((_, i) => {
+        const d = document.getElementById('fc-dot-' + i);
+        if (!d) return;
+        d.className = 'fc-dot';
+        if (i === fcIdx) d.classList.add('current');
+        else if (fcState[i] === 'known') d.classList.add('known');
+        else if (fcState[i] === 'again') d.classList.add('again');
+      });
+    }
+    function flipCard() { document.getElementById('fc-card').classList.toggle('flipped'); }
+    function fcMark(status) {
+      if (fcIdx >= flashData.length) return;
+      fcState[fcIdx] = status;
+      if (status === 'known') fcKnown++;
+      else if (status === 'again') fcAgain++;
+      else fcSkipped++;
+      document.getElementById('fc-known-count').textContent = fcKnown;
+      document.getElementById('fc-again-count').textContent = fcAgain;
+      document.getElementById('fc-skip-count').textContent = fcSkipped;
+      fcIdx++;
+      showCard();
+    }
+    function resetFlash() {
+      document.getElementById('fc-card').style.display = '';
+      document.querySelector('.fc-controls').style.display = '';
+      document.getElementById('fc-complete').classList.remove('show');
+      initFlash();
+    }
+
+    // ============ TOC HIGHLIGHT ============
+    const tocLinks = document.querySelectorAll('.toc-list a');
+    const sectionBlocks = document.querySelectorAll('.section-block');
+    function onScroll() {
+      let current = '';
+      sectionBlocks.forEach(s => { if (s.getBoundingClientRect().top < 120) current = '#' + s.id; });
+      tocLinks.forEach(a => { a.classList.toggle('current', a.getAttribute('href') === current); });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+  </script>
+</body>
+</html>
