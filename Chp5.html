@@ -1,0 +1,1971 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ch. 05 — Muscle Architecture & Dynamics | Biomechanics of Movement</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header>
+      <div class="container nav">
+        <a href="/" class="brand">Biomechanics <span>of Movement</span></a>
+        <div class="nav-right">
+          <a href="index.html" class="back-link">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 14 14"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9 2L4 7L9 12"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            Home
+          </a>
+          <span class="chapter-tag">CH. 05 — Muscle Architecture</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- CHAPTER HERO -->
+    <section class="ch-hero">
+      <div class="container ch-hero-inner">
+        <div>
+          <div class="ch-eyebrow">Chapter 05 · Hill-Type Modeling</div>
+          <h1>Muscle <em>Architecture</em> &amp; Dynamics</h1>
+          <p class="ch-hero-sub">
+            How fiber arrangement, length, pennation, cross-sectional area,
+            and tendon elasticity combine with activation to determine the
+            force a muscle can actually produce — the Hill-type muscle model.
+          </p>
+          <div class="ch-meta">
+            <div class="ch-meta-item"><strong>14</strong>Sections</div>
+            <div class="ch-meta-item"><strong>10</strong>MCQ Questions</div>
+            <div class="ch-meta-item"><strong>8</strong>Fill-in-Blank</div>
+            <div class="ch-meta-item"><strong>16</strong>Flashcards</div>
+          </div>
+        </div>
+        <div>
+          <div class="hero-figure-plate">
+            <img src="img/chp5.png" alt="Chapter 5 hero figure" />
+          </div>
+          <div class="fig-label">
+            Fig. 5.0 — The Hill-type muscle model: CE, PE &amp; tendon in series
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODE TABS -->
+    <div class="mode-bar">
+      <div class="container">
+        <div class="mode-tabs">
+          <button class="mode-tab active" onclick="switchPanel('notes', this)">
+            Study Notes
+          </button>
+          <button class="mode-tab" onclick="switchPanel('mcq', this)">
+            MCQ Quiz
+          </button>
+          <button class="mode-tab" onclick="switchPanel('fitb', this)">
+            Fill in the Blank
+          </button>
+          <button class="mode-tab" onclick="switchPanel('flash', this)">
+            Flashcards
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== NOTES PANEL ========== -->
+    <div id="panel-notes" class="panel active">
+      <div class="container">
+        <div class="notes-layout">
+          <nav class="notes-toc">
+            <div class="toc-label">Contents</div>
+            <ul class="toc-list">
+              <li><a href="#s1">1. Core Idea of the Chapter</a></li>
+              <li><a href="#s2">2. Force Production in Muscle</a></li>
+              <li><a href="#s3">3. Force-Length Relationship</a></li>
+              <li><a href="#s4">4. Force-Velocity Relationship</a></li>
+              <li><a href="#s5">5. Activation &amp; Control</a></li>
+              <li><a href="#s6">6. Neuromuscular Junction</a></li>
+              <li><a href="#s7">7. Muscle Architecture</a></li>
+              <li><a href="#s8">8. Pennation Angle Effect</a></li>
+              <li><a href="#s9">9. Physiological Cross-Sectional Area</a></li>
+              <li><a href="#s10">10. Fiber Length Effects</a></li>
+              <li><a href="#s11">11. Fiber Type &amp; Velocity</a></li>
+              <li><a href="#s12">12. Tendon Mechanics</a></li>
+              <li><a href="#s13">13. Muscle-Tendon Interaction</a></li>
+              <li><a href="#s14">14. The Hill-Type Muscle Model</a></li>
+              <li><a href="#sexam">Quick Review</a></li>
+            </ul>
+          </nav>
+
+          <div class="notes-content">
+            <!-- MOBILE TOC TOGGLE -->
+            <div class="toc-toggle-wrap">
+              <button
+                class="toc-toggle-btn"
+                id="toc-toggle-btn"
+                onclick="toggleTOC()"
+                aria-expanded="false"
+                aria-controls="toc-drawer"
+              >
+                <span class="toc-icon" aria-hidden="true"
+                  ><span></span><span></span><span></span
+                ></span>
+                <span class="toc-toggle-label">Contents</span>
+                <span class="toc-chevron">▼</span>
+              </button>
+              <div
+                class="toc-drawer"
+                id="toc-drawer"
+                role="navigation"
+                aria-label="Chapter contents"
+              >
+                <div class="toc-drawer-inner">
+                  <ul class="toc-list">
+                    <li><a href="#s1" onclick="closeTOC()">1. Core Idea of the Chapter</a></li>
+                    <li><a href="#s2" onclick="closeTOC()">2. Force Production in Muscle</a></li>
+                    <li><a href="#s3" onclick="closeTOC()">3. Force-Length Relationship</a></li>
+                    <li><a href="#s4" onclick="closeTOC()">4. Force-Velocity Relationship</a></li>
+                    <li><a href="#s5" onclick="closeTOC()">5. Activation &amp; Control</a></li>
+                    <li><a href="#s6" onclick="closeTOC()">6. Neuromuscular Junction</a></li>
+                    <li><a href="#s7" onclick="closeTOC()">7. Muscle Architecture</a></li>
+                    <li><a href="#s8" onclick="closeTOC()">8. Pennation Angle Effect</a></li>
+                    <li><a href="#s9" onclick="closeTOC()">9. Physiological Cross-Sectional Area</a></li>
+                    <li><a href="#s10" onclick="closeTOC()">10. Fiber Length Effects</a></li>
+                    <li><a href="#s11" onclick="closeTOC()">11. Fiber Type &amp; Velocity</a></li>
+                    <li><a href="#s12" onclick="closeTOC()">12. Tendon Mechanics</a></li>
+                    <li><a href="#s13" onclick="closeTOC()">13. Muscle-Tendon Interaction</a></li>
+                    <li><a href="#s14" onclick="closeTOC()">14. The Hill-Type Muscle Model</a></li>
+                    <li><a href="#sexam" onclick="closeTOC()">Quick Review</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- S1 -->
+            <div class="section-block" id="s1">
+              <div class="section-eyebrow">Section 1</div>
+              <h2>Core Idea of the Chapter</h2>
+              <p>
+                Chapter 4 established <strong>how</strong> a muscle generates
+                force at the molecular level — activation, calcium, and the
+                cross-bridge cycle. Chapter 5 asks a different question: given
+                that machinery, how much force can a whole muscle actually
+                produce, and why do different muscles behave so differently?
+              </p>
+              <p>
+                The answer depends on far more than activation. It depends on
+                muscle length, how fast the muscle is shortening or
+                lengthening, how its fibers are arranged, and how compliant
+                its tendon is.
+              </p>
+              <div class="key-box">
+                <div class="key-box-label">Key Principle</div>
+                <p>
+                  Muscle structure determines mechanical function. Two
+                  muscles built from identical fibers can behave completely
+                  differently depending on their architecture.
+                </p>
+              </div>
+            </div>
+
+            <!-- S2 -->
+            <div class="section-block" id="s2">
+              <div class="section-eyebrow">Section 2</div>
+              <h2>Force Production in Muscle</h2>
+              <p>
+                Total muscle force depends on three interacting variables:
+              </p>
+              <ul>
+                <li><strong>a</strong> — activation, ranging from 0 to 1</li>
+                <li><strong>l</strong> — muscle fiber length</li>
+                <li><strong>v</strong> — muscle fiber velocity</li>
+              </ul>
+
+              <div class="flow-diagram">
+                <div
+                  style="
+                    text-align: center;
+                    font-family: 'Fraunces', serif;
+                    font-size: 22px;
+                    color: var(--ink);
+                    padding: 12px 0 6px;
+                  "
+                >
+                  F<sub>total</sub> = a · F<sub>active</sub>(l, v) + F<sub>passive</sub>(l)
+                </div>
+                <div
+                  style="
+                    text-align: center;
+                    font-family: 'JetBrains Mono', monospace;
+                    font-size: 11px;
+                    color: #9a9484;
+                    padding-bottom: 8px;
+                    letter-spacing: 0.08em;
+                  "
+                >
+                  Active force depends on activation, length, and velocity.
+                  Passive force depends only on stretch.
+                </div>
+              </div>
+
+              <div class="key-box">
+                <div class="key-box-label">Hill-Type Force Model</div>
+                <p>
+                  This is the core equation of the chapter: every later
+                  section explains one piece of it — the length term, the
+                  velocity term, or the passive term.
+                </p>
+              </div>
+            </div>
+
+            <!-- S3 -->
+            <div class="section-block" id="s3">
+              <div class="section-eyebrow">Section 3</div>
+              <h2>Force-Length Relationship</h2>
+              <p>
+                Active force depends heavily on how much the actin and myosin
+                filaments overlap, which is set by fiber length.
+              </p>
+
+              <div class="image-slider-container">
+                <div class="image-slider" id="muscleSlider">
+                  <div class="slide">
+                    <img src="img/force-length/1.png" alt="Force-length curve" />
+                  </div>
+                  <div class="slide">
+                    <img src="img/force-length/2.png" alt="Short sarcomere overlap" />
+                  </div>
+                  <div class="slide">
+                    <img src="img/force-length/3.png" alt="Optimal sarcomere overlap" />
+                  </div>
+                  <div class="slide">
+                    <img src="img/force-length/4.png" alt="Stretched sarcomere overlap" />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="fig-caption"
+                style="
+                  margin-top: 10px;
+                  font-family: 'JetBrains Mono', monospace;
+                  font-size: 11px;
+                  color: #9a9484;
+                  text-align: center;
+                  letter-spacing: 0.1em;
+                  text-transform: uppercase;
+                "
+              >
+                Figure 5.1 — Force-length relationship across short, optimal,
+                and stretched sarcomere lengths
+              </div>
+
+              <div class="table-scroll">
+                <table class="notes-table">
+                  <thead>
+                    <tr>
+                      <th>Length</th>
+                      <th>What Happens</th>
+                      <th>Force</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Short</td>
+                      <td>Filaments overlap too much; mutual interference</td>
+                      <td>Low</td>
+                    </tr>
+                    <tr>
+                      <td>Optimal</td>
+                      <td>Maximum productive overlap</td>
+                      <td>Maximum</td>
+                    </tr>
+                    <tr>
+                      <td>Long</td>
+                      <td>Filaments pulled apart; reduced overlap</td>
+                      <td>Low</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="key-box">
+                <div class="key-box-label">Key Parameter</div>
+                <p>
+                  Optimal fiber length is the length at which a muscle
+                  produces its maximum active force.
+                </p>
+              </div>
+            </div>
+
+            <!-- S4 -->
+            <div class="section-block" id="s4">
+              <div class="section-eyebrow">Section 4</div>
+              <h2>Force-Velocity Relationship</h2>
+              <p>
+                Active force also depends on how fast the fiber is changing
+                length — shortening, holding still, or lengthening.
+              </p>
+
+              <div class="image-slider-container">
+                <div class="image-slider" id="muscleSlider">
+                  <div class="slide">
+                    <img src="img/force-velocity/1.png" alt="Force-velocity curve" />
+                  </div>
+                  <div class="slide">
+                    <img src="img/force-velocity/2.png" alt="Concentric region" />
+                  </div>
+                  <div class="slide">
+                    <img src="img/force-velocity/3.png" alt="Isometric point" />
+                  </div>
+                  <div class="slide">
+                    <img src="img/force-velocity/4.png" alt="Eccentric region" />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="fig-caption"
+                style="
+                  margin-top: 10px;
+                  font-family: 'JetBrains Mono', monospace;
+                  font-size: 11px;
+                  color: #9a9484;
+                  text-align: center;
+                  letter-spacing: 0.1em;
+                  text-transform: uppercase;
+                "
+              >
+                Figure 5.2 — Force-velocity relationship
+              </div>
+
+              <div class="table-scroll">
+                <table class="notes-table">
+                  <thead>
+                    <tr>
+                      <th>Contraction</th>
+                      <th>Velocity</th>
+                      <th>Force</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Concentric</td>
+                      <td>Positive (shortening)</td>
+                      <td>Lower as velocity increases</td>
+                    </tr>
+                    <tr>
+                      <td>Isometric</td>
+                      <td>Zero</td>
+                      <td>Moderate-to-high, steady</td>
+                    </tr>
+                    <tr>
+                      <td>Eccentric</td>
+                      <td>Negative (lengthening)</td>
+                      <td>Higher than isometric</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="key-box">
+                <div class="key-box-label">Key Insight</div>
+                <p>
+                  Muscles produce greater force while lengthening than while
+                  shortening — the same asymmetry behind the Push-Me–Pull-You
+                  result from Chapter 4.
+                </p>
+              </div>
+            </div>
+
+            <!-- S5 -->
+            <div class="section-block" id="s5">
+              <div class="section-eyebrow">Section 5</div>
+              <h2>Muscle Activation &amp; Control</h2>
+              <p>
+                The nervous system has two independent ways to increase the
+                force a muscle produces.
+              </p>
+
+              <div class="flow-diagram">
+                <div class="flow-steps">
+                  <div class="flow-step">
+                    <div class="flow-num">1</div>
+                    <div class="flow-text">
+                      <strong>Rate Coding</strong
+                      ><span
+                        >Raising motor neuron firing frequency causes
+                        twitches to summate, building toward tetanus and
+                        higher force.</span
+                      >
+                    </div>
+                  </div>
+                  <div class="flow-step">
+                    <div class="flow-num">2</div>
+                    <div class="flow-text">
+                      <strong>Motor Unit Recruitment</strong
+                      ><span
+                        >Small motor units are recruited first; large units
+                        are recruited last, following the size principle.</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="key-box">
+                <div class="key-box-label">Exam Point</div>
+                <p>
+                  Rate coding and recruitment work together: the CNS grades
+                  force smoothly by combining how many motor units are active
+                  with how fast each one is firing.
+                </p>
+              </div>
+            </div>
+
+            <!-- S6 -->
+            <div class="section-block" id="s6">
+              <div class="section-eyebrow">Section 6</div>
+              <h2>Neuromuscular Junction (Signal Recap)</h2>
+              <p>
+                Activation still begins with a defined signal chain — the
+                same chain introduced in Chapter 4, now feeding into the
+                length-velocity-architecture model built in this chapter.
+              </p>
+
+              <div class="flow-diagram">
+                <div
+                  style="
+                    text-align: center;
+                    font-family: 'JetBrains Mono', monospace;
+                    font-size: 13px;
+                    color: var(--ink);
+                    line-height: 2.4;
+                    padding: 8px 0;
+                  "
+                >
+                  Motor neuron fires<br />↓<br />Acetylcholine released<br />↓<br />Muscle
+                  membrane depolarizes<br />↓<br />Calcium released<br />↓<br />Cross-bridge
+                  cycling begins
+                </div>
+              </div>
+
+              <div class="key-box">
+                <div class="key-box-label">Exam Point</div>
+                <p>
+                  This sequence determines whether a fiber is activated at
+                  all. Once active, the force-length and force-velocity
+                  relationships determine how much force that activation
+                  actually produces.
+                </p>
+              </div>
+            </div>
+
+            <!-- S7 -->
+            <div class="section-block" id="s7">
+              <div class="section-eyebrow">Section 7</div>
+              <h2>Muscle Architecture</h2>
+              <p>
+                Muscles differ structurally in how their fibers are arranged
+                relative to the tendon — and this arrangement strongly shapes
+                function.
+              </p>
+
+              <div class="table-scroll">
+                <table class="notes-table">
+                  <thead>
+                    <tr>
+                      <th>Architecture</th>
+                      <th>Fiber Arrangement</th>
+                      <th>Functional Result</th>
+                      <th>Examples</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Parallel</td>
+                      <td>Fibers run parallel to the tendon</td>
+                      <td>Long shortening distance, high velocity, lower force</td>
+                      <td>Sartorius</td>
+                    </tr>
+                    <tr>
+                      <td>Pennate</td>
+                      <td>Fibers angled relative to the tendon</td>
+                      <td>Dense fiber packing, higher force, reduced shortening range</td>
+                      <td>Gastrocnemius, rectus femoris, deltoid</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="image-slider-container">
+                <div class="image-slider" id="muscleSlider">
+                  <div class="slide">
+                    <img src="img/architecture/1.png" alt="Parallel fiber muscle" />
+                  </div>
+                  <div class="slide">
+                    <img src="img/architecture/2.png" alt="Pennate muscle" />
+                  </div>
+                  <div class="slide">
+                    <img src="img/architecture/3.png" alt="Bipennate muscle" />
+                  </div>
+                  <div class="slide">
+                    <img src="img/architecture/4.png" alt="Fiber packing comparison" />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="fig-caption"
+                style="
+                  margin-top: 10px;
+                  font-family: 'JetBrains Mono', monospace;
+                  font-size: 11px;
+                  color: #9a9484;
+                  text-align: center;
+                  letter-spacing: 0.1em;
+                  text-transform: uppercase;
+                "
+              >
+                Figure 5.3 — Parallel vs. pennate fiber architecture
+              </div>
+            </div>
+
+            <!-- S8 -->
+            <div class="section-block" id="s8">
+              <div class="section-eyebrow">Section 8</div>
+              <h2>Pennation Angle Effect</h2>
+              <p>
+                The pennation angle is the angle between a muscle's fibers
+                and its line of action (the tendon). It creates a direct
+                trade-off between packing more fibers into a given volume and
+                how efficiently each fiber's force transmits to the tendon.
+              </p>
+
+              <div class="image-slider-container">
+                <div class="image-slider" id="muscleSlider">
+                  <div class="slide">
+                    <img src="img/pennation/1.png" alt="Low pennation angle" />
+                  </div>
+                  <div class="slide">
+                    <img src="img/pennation/2.png" alt="High pennation angle" />
+                  </div>
+                  <div class="slide">
+                    <img src="img/pennation/3.png" alt="Force component diagram" />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="fig-caption"
+                style="
+                  margin-top: 10px;
+                  font-family: 'JetBrains Mono', monospace;
+                  font-size: 11px;
+                  color: #9a9484;
+                  text-align: center;
+                  letter-spacing: 0.1em;
+                  text-transform: uppercase;
+                "
+              >
+                Figure 5.4 — Pennation angle and effective force transmission
+              </div>
+
+              <div class="flow-diagram">
+                <div
+                  style="
+                    text-align: center;
+                    font-family: 'Fraunces', serif;
+                    font-size: 22px;
+                    color: var(--ink);
+                    padding: 12px 0 6px;
+                  "
+                >
+                  F<sub>tendon</sub> = F<sub>fiber</sub> · cos(θ)
+                </div>
+                <div
+                  style="
+                    text-align: center;
+                    font-family: 'JetBrains Mono', monospace;
+                    font-size: 11px;
+                    color: #9a9484;
+                    padding-bottom: 8px;
+                    letter-spacing: 0.08em;
+                  "
+                >
+                  θ = pennation angle. Only the component of fiber force
+                  aligned with the tendon contributes to net pull.
+                </div>
+              </div>
+
+              <div class="key-box">
+                <div class="key-box-label">Key Trade-Off</div>
+                <p>
+                  A higher pennation angle allows more fibers to pack into
+                  the same muscle volume, raising total force potential — but
+                  it also reduces how efficiently each individual fiber's
+                  force transmits to the tendon.
+                </p>
+              </div>
+            </div>
+
+            <!-- S9 -->
+            <div class="section-block" id="s9">
+              <div class="section-eyebrow">Section 9</div>
+              <h2>Physiological Cross-Sectional Area (PCSA)</h2>
+              <p>
+                PCSA is the cross-sectional area measured perpendicular to
+                the muscle fibers themselves — not perpendicular to the whole
+                muscle belly. It accounts for pennation, so it reflects how
+                many sarcomeres are arranged in parallel.
+              </p>
+
+              <div class="flow-diagram">
+                <div
+                  style="
+                    text-align: center;
+                    font-family: 'Fraunces', serif;
+                    font-size: 20px;
+                    color: var(--ink);
+                    padding: 12px 0 6px;
+                  "
+                >
+                  PCSA = (Muscle Volume / Optimal Fiber Length) · cos(θ)
+                </div>
+              </div>
+
+              <div class="image-slider-container">
+                <div class="image-slider" id="muscleSlider">
+                  <div class="slide">
+                    <img src="img/pcsa/1.png" alt="PCSA cross-section" />
+                  </div>
+                  <div class="slide">
+                    <img src="img/pcsa/2.png" alt="PCSA vs anatomical cross-section" />
+                  </div>
+                  <div class="slide">
+                    <img src="img/pcsa/3.png" alt="PCSA and force scaling" />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="fig-caption"
+                style="
+                  margin-top: 10px;
+                  font-family: 'JetBrains Mono', monospace;
+                  font-size: 11px;
+                  color: #9a9484;
+                  text-align: center;
+                  letter-spacing: 0.1em;
+                  text-transform: uppercase;
+                "
+              >
+                Figure 5.5 — Physiological cross-sectional area
+              </div>
+
+              <div class="key-box">
+                <div class="key-box-label">Exam Point</div>
+                <p>
+                  A larger PCSA means more sarcomeres acting in parallel and
+                  therefore greater force capability. PCSA — not overall
+                  muscle volume — is the main anatomical determinant of
+                  strength.
+                </p>
+              </div>
+            </div>
+
+            <!-- S10 -->
+            <div class="section-block" id="s10">
+              <div class="section-eyebrow">Section 10</div>
+              <h2>Muscle Fiber Length Effects</h2>
+              <p>
+                Fiber length determines how many sarcomeres are arranged in
+                series along each fiber, which governs shortening velocity
+                and the width of the force-length curve.
+              </p>
+
+              <div class="table-scroll">
+                <table class="notes-table">
+                  <thead>
+                    <tr>
+                      <th>Fiber Length</th>
+                      <th>Sarcomeres in Series</th>
+                      <th>Result</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Long fibers</td>
+                      <td>More</td>
+                      <td>Higher contraction velocity, wider force-length curve</td>
+                    </tr>
+                    <tr>
+                      <td>Short fibers</td>
+                      <td>Fewer</td>
+                      <td>Higher force density, narrower operating range</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="key-box">
+                <div class="key-box-label">Why Series Matters</div>
+                <p>
+                  Sarcomeres in series add their shortening velocities, while
+                  sarcomeres in parallel (captured by PCSA) add their forces.
+                  Fiber length and PCSA are therefore independent design
+                  parameters — one tunes speed, the other tunes strength.
+                </p>
+              </div>
+            </div>
+
+            <!-- S11 -->
+            <div class="section-block" id="s11">
+              <div class="section-eyebrow">Section 11</div>
+              <h2>Fiber Type &amp; Velocity</h2>
+              <p>
+                Beyond architecture, the fiber type composition of a muscle
+                sets its intrinsic contraction speed and fatigue resistance.
+              </p>
+
+              <div class="table-scroll">
+                <table class="notes-table">
+                  <thead>
+                    <tr>
+                      <th>Fiber Type</th>
+                      <th>Speed</th>
+                      <th>Fatigue Resistance</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Type I</td>
+                      <td>Slow</td>
+                      <td>High</td>
+                    </tr>
+                    <tr>
+                      <td>Type IIa</td>
+                      <td>Moderate</td>
+                      <td>Moderate</td>
+                    </tr>
+                    <tr>
+                      <td>Type IIb</td>
+                      <td>Fast, powerful</td>
+                      <td>Low</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="key-box">
+                <div class="key-box-label">Exam Point</div>
+                <p>
+                  A muscle's overall maximum contraction velocity reflects
+                  both its fiber length (Section 10) and its fiber type
+                  mixture — architecture and biology act together.
+                </p>
+              </div>
+            </div>
+
+            <!-- S12 -->
+            <div class="section-block" id="s12">
+              <div class="section-eyebrow">Section 12</div>
+              <h2>Tendon Mechanics</h2>
+              <p>
+                Tendons are elastic structures in series with muscle fibers.
+                Their stress-strain behavior follows three distinct regions.
+              </p>
+
+              <div class="image-slider-container">
+                <div class="image-slider" id="muscleSlider">
+                  <div class="slide">
+                    <img src="img/tendon/1.png" alt="Tendon stress-strain curve" />
+                  </div>
+                  <div class="slide">
+                    <img src="img/tendon/2.png" alt="Tendon toe region" />
+                  </div>
+                  <div class="slide">
+                    <img src="img/tendon/3.png" alt="Tendon linear region" />
+                  </div>
+                  <div class="slide">
+                    <img src="img/tendon/4.png" alt="Tendon failure region" />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="fig-caption"
+                style="
+                  margin-top: 10px;
+                  font-family: 'JetBrains Mono', monospace;
+                  font-size: 11px;
+                  color: #9a9484;
+                  text-align: center;
+                  letter-spacing: 0.1em;
+                  text-transform: uppercase;
+                "
+              >
+                Figure 5.6 — Tendon stress-strain behavior
+              </div>
+
+              <div class="table-scroll">
+                <table class="notes-table">
+                  <thead>
+                    <tr>
+                      <th>Region</th>
+                      <th>Behavior</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Toe Region</td>
+                      <td>Compliant; collagen fibers straighten with little force</td>
+                    </tr>
+                    <tr>
+                      <td>Linear Region</td>
+                      <td>Stiff; force rises steeply with strain</td>
+                    </tr>
+                    <tr>
+                      <td>Failure Region</td>
+                      <td>Rupture, typically around 10% strain</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- S13 -->
+            <div class="section-block" id="s13">
+              <div class="section-eyebrow">Section 13</div>
+              <h2>Muscle-Tendon Interaction</h2>
+              <p>
+                Because the tendon sits in series with the muscle fibers, its
+                stiffness changes how the whole muscle-tendon unit behaves
+                under load.
+              </p>
+
+              <div class="table-scroll">
+                <table class="notes-table">
+                  <thead>
+                    <tr>
+                      <th>Tendon Type</th>
+                      <th>Behavior</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Rigid Tendon</td>
+                      <td>Fiber length closely tracks whole muscle-tendon unit length</td>
+                    </tr>
+                    <tr>
+                      <td>Compliant Tendon</td>
+                      <td>
+                        Tendon stretches under load, allowing fibers to
+                        shorten internally even as the overall unit length
+                        stays constant
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="key-box">
+                <div class="key-box-label">Exam Point</div>
+                <p>
+                  A compliant tendon decouples fiber length and velocity from
+                  whole-muscle length and velocity — meaning the
+                  force-length and force-velocity curves from Sections 3 and
+                  4 apply to the fiber, not necessarily to the joint motion
+                  you observe.
+                </p>
+              </div>
+            </div>
+
+            <!-- S14 -->
+            <div class="section-block" id="s14">
+              <div class="section-eyebrow">Section 14</div>
+              <h2>The Hill-Type Muscle Model</h2>
+              <p>
+                The Hill-type model is the standard way biomechanists combine
+                everything in this chapter into one simulate-able system. It
+                represents the muscle-tendon unit as three elements.
+              </p>
+
+              <div class="image-slider-container">
+                <div class="image-slider" id="muscleSlider">
+                  <div class="slide">
+                    <img src="img/hill-model/1.png" alt="Hill-type model schematic" />
+                  </div>
+                  <div class="slide">
+                    <img src="img/hill-model/2.png" alt="Contractile element" />
+                  </div>
+                  <div class="slide">
+                    <img src="img/hill-model/3.png" alt="Passive and series elements" />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="fig-caption"
+                style="
+                  margin-top: 10px;
+                  font-family: 'JetBrains Mono', monospace;
+                  font-size: 11px;
+                  color: #9a9484;
+                  text-align: center;
+                  letter-spacing: 0.1em;
+                  text-transform: uppercase;
+                "
+              >
+                Figure 5.7 — The Hill-type muscle model
+              </div>
+
+              <div class="table-scroll">
+                <table class="notes-table">
+                  <thead>
+                    <tr>
+                      <th>Component</th>
+                      <th>Role</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Contractile Element (CE)</td>
+                      <td>Active force generator; follows force-length-velocity relationships</td>
+                    </tr>
+                    <tr>
+                      <td>Passive Elastic Element (PE)</td>
+                      <td>Parallel spring; produces passive resistance to stretch</td>
+                    </tr>
+                    <tr>
+                      <td>Series Elastic Element (SE)</td>
+                      <td>Represents tendon compliance, in series with the CE</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="key-box">
+                <div class="key-box-label">Core Idea</div>
+                <p>
+                  Force is not instantaneous — it depends on the muscle's
+                  current state (length, velocity, activation) and its
+                  recent history, not just the present neural command.
+                </p>
+              </div>
+            </div>
+
+            <!-- EXAM QUICK REVIEW -->
+            <div class="section-block" id="sexam">
+              <div class="section-eyebrow">Exam-Focused Quick Review</div>
+              <h2>Key Definitions</h2>
+              <div class="table-scroll">
+                <table class="notes-table">
+                  <thead>
+                    <tr>
+                      <th>Term</th>
+                      <th>Definition</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Optimal Fiber Length</td>
+                      <td>Length at which a fiber produces maximum active force</td>
+                    </tr>
+                    <tr>
+                      <td>PCSA</td>
+                      <td>Cross-sectional area perpendicular to fibers; the main determinant of strength</td>
+                    </tr>
+                    <tr>
+                      <td>Pennation Angle</td>
+                      <td>Angle between fibers and the tendon's line of action</td>
+                    </tr>
+                    <tr>
+                      <td>Tendon Slack Length</td>
+                      <td>Tendon length below which it bears no load</td>
+                    </tr>
+                    <tr>
+                      <td>Contractile Element (CE)</td>
+                      <td>Active, force-length-velocity-dependent component of the Hill model</td>
+                    </tr>
+                    <tr>
+                      <td>Series Elastic Element (SE)</td>
+                      <td>Tendon compliance, in series with the contractile element</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h2 style="margin-top: 32px">Exam Table</h2>
+              <div class="table-scroll">
+                <table class="notes-table">
+                  <thead>
+                    <tr>
+                      <th>Topic</th>
+                      <th>Key Fact</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Determinant of strength</td>
+                      <td>PCSA, not muscle volume</td>
+                    </tr>
+                    <tr>
+                      <td>Parallel fibers</td>
+                      <td>Long shortening range, high velocity, lower force</td>
+                    </tr>
+                    <tr>
+                      <td>Pennate fibers</td>
+                      <td>Higher force, reduced shortening range</td>
+                    </tr>
+                    <tr>
+                      <td>Pennation force loss</td>
+                      <td>F_tendon = F_fiber · cos(θ)</td>
+                    </tr>
+                    <tr>
+                      <td>Longer fibers</td>
+                      <td>Higher velocity, wider force-length curve</td>
+                    </tr>
+                    <tr>
+                      <td>Tendon toe region</td>
+                      <td>Compliant, low stiffness</td>
+                    </tr>
+                    <tr>
+                      <td>Tendon failure strain</td>
+                      <td>≈10% strain</td>
+                    </tr>
+                    <tr>
+                      <td>Compliant tendon effect</td>
+                      <td>Decouples fiber length/velocity from joint motion</td>
+                    </tr>
+                    <tr>
+                      <td>Hill model elements</td>
+                      <td>CE, PE, SE</td>
+                    </tr>
+                    <tr>
+                      <td>Force depends on</td>
+                      <td>Activation, length, velocity (+ passive stretch)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="key-box" style="margin-top: 32px">
+                <div class="key-box-label">Most Important Takeaway</div>
+                <p>
+                  Muscle force is determined by activation-modulated
+                  cross-bridge dynamics, shaped by the force-length and
+                  force-velocity relationships, and scaled by architecture —
+                  PCSA, fiber length, pennation angle, and tendon compliance.
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- /notes-content -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== MCQ PANEL ========== -->
+    <div id="panel-mcq" class="panel">
+      <div class="container" style="max-width: 740px">
+        <div class="activity-header">
+          <div class="ch-eyebrow">Multiple Choice</div>
+          <h2>Test Your Understanding</h2>
+          <p>10 questions · timed · graded</p>
+        </div>
+
+        <div id="mcq-start-screen">
+          <div
+            style="
+              background: #fff;
+              border: 1px solid var(--line);
+              border-radius: 4px;
+              padding: 40px;
+              text-align: center;
+              max-width: 480px;
+              margin: 0 auto;
+            "
+          >
+            <div
+              style="
+                font-family: 'Fraunces', serif;
+                font-size: 48px;
+                font-weight: 300;
+                color: var(--orange);
+                line-height: 1;
+              "
+            >
+              10:00
+            </div>
+            <div
+              style="
+                font-family: 'JetBrains Mono', monospace;
+                font-size: 10px;
+                text-transform: uppercase;
+                letter-spacing: 0.2em;
+                color: #9a9484;
+                margin-bottom: 24px;
+              "
+            >
+              Time limit
+            </div>
+            <p style="font-size: 15px; color: #6a6a6a; margin-bottom: 28px">
+              Answer all 10 questions before the timer runs out. Each correct
+              answer is worth 1 point.
+            </p>
+            <button class="btn-primary" onclick="startMCQ()">
+              Start Quiz →
+            </button>
+          </div>
+        </div>
+
+        <div id="mcq-quiz-screen" style="display: none">
+          <div class="quiz-toolbar">
+            <div class="timer-badge">
+              <div class="timer-dot"></div>
+              <div>
+                <div class="timer-label">Time Remaining</div>
+                <span id="mcq-timer">10:00</span>
+              </div>
+            </div>
+            <div class="progress-bar-wrap">
+              <div class="progress-label">
+                Progress — <span id="mcq-progress-text">0 / 10</span>
+              </div>
+              <div class="progress-bar">
+                <div
+                  class="progress-fill"
+                  id="mcq-progress-fill"
+                  style="width: 0%"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div id="mcq-questions"></div>
+          <div class="quiz-nav">
+            <span></span>
+            <button class="btn-primary" onclick="submitMCQ()">
+              Submit Answers →
+            </button>
+          </div>
+        </div>
+
+        <div class="score-screen" id="mcq-score-screen">
+          <div class="score-circle">
+            <div class="score-num" id="mcq-score-num">—</div>
+            <div class="score-denom">/ 10</div>
+          </div>
+          <div class="score-grade" id="mcq-grade"></div>
+          <div class="score-msg" id="mcq-msg"></div>
+          <div class="score-stats">
+            <div class="stat-item">
+              <strong id="mcq-correct-count">—</strong>Correct
+            </div>
+            <div class="stat-item">
+              <strong id="mcq-wrong-count">—</strong>Wrong
+            </div>
+            <div class="stat-item">
+              <strong id="mcq-time-used">—</strong>Time used
+            </div>
+          </div>
+          <button class="btn-primary" onclick="resetMCQ()">Try Again</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== FILL IN THE BLANK PANEL ========== -->
+    <div id="panel-fitb" class="panel">
+      <div class="container" style="max-width: 740px">
+        <div class="activity-header">
+          <div class="ch-eyebrow">Fill in the Blank</div>
+          <h2>Complete the Statements</h2>
+          <p>8 sentences — type the missing term, then check your answer</p>
+        </div>
+        <div class="quiz-toolbar">
+          <div class="timer-badge">
+            <div class="timer-dot"></div>
+            <div>
+              <div class="timer-label">Elapsed</div>
+              <span id="fitb-timer">00:00</span>
+            </div>
+          </div>
+          <div class="progress-bar-wrap">
+            <div class="progress-label">
+              Completed — <span id="fitb-progress-text">0 / 8</span>
+            </div>
+            <div class="progress-bar">
+              <div
+                class="progress-fill"
+                id="fitb-progress-fill"
+                style="width: 0%"
+              ></div>
+            </div>
+          </div>
+        </div>
+        <div id="fitb-questions"></div>
+        <div style="margin-top: 32px; text-align: right">
+          <button class="btn-primary" onclick="showFITBScore()">
+            See Score →
+          </button>
+        </div>
+        <div class="score-screen" id="fitb-score-screen">
+          <div class="score-circle">
+            <div class="score-num" id="fitb-score-num">—</div>
+            <div class="score-denom">/ 8</div>
+          </div>
+          <div class="score-grade" id="fitb-grade"></div>
+          <div class="score-msg" id="fitb-msg"></div>
+          <div class="score-stats">
+            <div class="stat-item">
+              <strong id="fitb-correct-count">—</strong>Correct
+            </div>
+            <div class="stat-item">
+              <strong id="fitb-wrong-count">—</strong>Wrong
+            </div>
+            <div class="stat-item">
+              <strong id="fitb-time-used">—</strong>Time (mm:ss)
+            </div>
+          </div>
+          <button class="btn-primary" onclick="resetFITB()">Try Again</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== FLASHCARDS PANEL ========== -->
+    <div id="panel-flash" class="panel">
+      <div class="container" style="max-width: 680px">
+        <div class="activity-header">
+          <div class="ch-eyebrow">Flashcards</div>
+          <h2>Drill the Key Terms</h2>
+          <p>16 cards — tap to reveal, then mark Know it or Study again</p>
+        </div>
+        <div class="flashcard-area">
+          <div class="fc-deck-info">
+            <div class="fc-deck-label">Chapter 05 — Muscle Architecture &amp; Dynamics</div>
+            <div class="fc-counter">
+              <span id="fc-current">1</span> / <span id="fc-total">16</span>
+            </div>
+          </div>
+          <div class="fc-card" id="fc-card" onclick="flipCard()">
+            <div class="fc-inner">
+              <div class="fc-face fc-front">
+                <div class="fc-tag">Term / Concept</div>
+                <div class="fc-question" id="fc-question">Loading…</div>
+                <div class="fc-flip-hint">tap to flip →</div>
+              </div>
+              <div class="fc-face fc-back">
+                <div class="fc-tag">Answer</div>
+                <div class="fc-answer" id="fc-answer">—</div>
+                <div class="fc-flip-hint">← tap to flip back</div>
+              </div>
+            </div>
+          </div>
+          <div class="fc-controls">
+            <button class="fc-again" onclick="fcMark('again')">
+              ✗ Study Again
+            </button>
+            <button class="fc-skip" onclick="fcMark('skip')">→ Skip</button>
+            <button class="fc-know" onclick="fcMark('known')">✓ Know it</button>
+          </div>
+          <div class="fc-progress-dots" id="fc-dots"></div>
+          <div class="fc-score-bar">
+            <div class="fc-score-item s-known">
+              <strong id="fc-known-count">0</strong>Know it
+            </div>
+            <div class="fc-score-item">
+              <strong id="fc-skip-count">0</strong>Skipped
+            </div>
+            <div class="fc-score-item s-again">
+              <strong id="fc-again-count">0</strong>Study Again
+            </div>
+          </div>
+          <div class="fc-complete" id="fc-complete">
+            <div
+              style="
+                font-family: 'Fraunces', serif;
+                font-size: 36px;
+                font-weight: 500;
+                color: var(--ink);
+                margin-bottom: 8px;
+              "
+            >
+              Deck Complete
+            </div>
+            <p style="font-size: 15px; color: #6a6a6a; margin-bottom: 28px">
+              You reviewed all 16 cards.
+            </p>
+            <button class="btn-primary" onclick="resetFlash()">
+              Restart Deck
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        Biomechanics of Movement &mdash; Ch. 05 · Based on the book by Uchida,
+        Delp &amp; Delp (MIT Press)
+      </div>
+    </footer>
+
+    <script>
+      // ============ TOC TOGGLE ============
+      function toggleTOC() {
+        const btn = document.getElementById("toc-toggle-btn");
+        const drawer = document.getElementById("toc-drawer");
+        const isOpen = drawer.classList.contains("open");
+        drawer.classList.toggle("open", !isOpen);
+        btn.classList.toggle("open", !isOpen);
+        btn.setAttribute("aria-expanded", String(!isOpen));
+      }
+      function closeTOC() {
+        const btn = document.getElementById("toc-toggle-btn");
+        const drawer = document.getElementById("toc-drawer");
+        drawer.classList.remove("open");
+        btn.classList.remove("open");
+        btn.setAttribute("aria-expanded", "false");
+      }
+
+      // ============ PANEL SWITCHING ============
+      function switchPanel(id, btn) {
+        document
+          .querySelectorAll(".panel")
+          .forEach((p) => p.classList.remove("active"));
+        document
+          .querySelectorAll(".mode-tab")
+          .forEach((t) => t.classList.remove("active"));
+        document.getElementById("panel-" + id).classList.add("active");
+        btn.classList.add("active");
+        if (id !== "notes") closeTOC();
+        if (id === "fitb" && !fitbTimerStarted) {
+          startFITBTimer();
+          fitbTimerStarted = true;
+        }
+        if (id === "flash" && !flashInit) {
+          initFlash();
+          flashInit = true;
+        }
+      }
+
+      // ============ MCQ DATA ============
+      const mcqData = [
+        {
+          q: "What does PCSA (physiological cross-sectional area) primarily determine?",
+          opts: [
+            "Contraction velocity",
+            "A muscle's maximum force capability",
+            "Tendon stiffness",
+            "Fatigue resistance",
+          ],
+          ans: 1,
+          exp: "PCSA reflects the number of sarcomeres arranged in parallel. A larger PCSA means greater force capability — PCSA, not overall muscle volume, is the main anatomical determinant of strength.",
+        },
+        {
+          q: "Why do pennate muscles trade off force transmission efficiency?",
+          opts: [
+            "Their tendons are more compliant",
+            "Their fibers run parallel to the tendon",
+            "Their fibers are angled relative to the tendon, so only part of each fiber's force aligns with it",
+            "They contain only Type I fibers",
+          ],
+          ans: 2,
+          exp: "Pennate fibers are angled relative to the tendon. Only the component of each fiber's force aligned with the tendon (F_fiber · cos θ) actually contributes to net pull, even though pennation allows more fibers to pack into the same volume.",
+        },
+        {
+          q: "Which muscle architecture produces a longer shortening range and higher velocity, but lower force?",
+          opts: ["Pennate", "Parallel", "Bipennate", "Both produce identical ranges"],
+          ans: 1,
+          exp: "Parallel-fiber muscles (e.g., sartorius) have fibers running the length of the muscle, giving a long shortening distance and high velocity, but lower overall force than densely packed pennate muscles.",
+        },
+        {
+          q: "What is the relationship between fiber length and the number of sarcomeres in series?",
+          opts: [
+            "Longer fibers have fewer sarcomeres in series",
+            "Longer fibers have more sarcomeres in series, increasing shortening velocity",
+            "Fiber length has no relationship to sarcomere number",
+            "Sarcomeres in series only affect force, not velocity",
+          ],
+          ans: 1,
+          exp: "Longer fibers contain more sarcomeres arranged in series. Since series sarcomeres' shortening velocities add together, longer fibers shorten faster and have a wider force-length operating range.",
+        },
+        {
+          q: "How does a compliant tendon affect the relationship between fiber length/velocity and joint motion?",
+          opts: [
+            "It has no effect; fiber length always equals joint-determined muscle length",
+            "It decouples fiber length and velocity from the whole muscle-tendon unit's length and velocity",
+            "It only affects passive force, not active force",
+            "It eliminates the force-velocity relationship entirely",
+          ],
+          ans: 1,
+          exp: "A compliant tendon stretches under load, allowing the fibers to shorten internally even while the whole muscle-tendon unit length stays constant — decoupling fiber-level mechanics from observed joint motion.",
+        },
+        {
+          q: "In the stress-strain curve of a tendon, what characterizes the 'toe region'?",
+          opts: [
+            "High stiffness and rapid force rise",
+            "Compliant behavior as collagen fibers straighten under low force",
+            "The point of rupture",
+            "Maximum force transmission",
+          ],
+          ans: 1,
+          exp: "The toe region is the compliant initial portion of the tendon's stress-strain curve, where collagen fibers straighten out under relatively low force before the tendon becomes stiff.",
+        },
+        {
+          q: "At approximately what strain does tendon failure (rupture) typically occur?",
+          opts: ["~1%", "~10%", "~50%", "~90%"],
+          ans: 1,
+          exp: "Tendons typically rupture at around 10% strain, after passing through the compliant toe region and the stiff linear region.",
+        },
+        {
+          q: "What are the three elements of the Hill-type muscle model?",
+          opts: [
+            "Actin, myosin, and titin",
+            "Contractile element, passive elastic element, and series elastic element",
+            "Sarcomere, myofibril, and fascicle",
+            "Activation, length, and velocity",
+          ],
+          ans: 1,
+          exp: "The Hill-type model represents the muscle-tendon unit with a contractile element (CE, active force), a passive elastic element (PE, parallel spring), and a series elastic element (SE, representing tendon compliance).",
+        },
+        {
+          q: "According to the force-velocity relationship, which condition produces the highest force?",
+          opts: [
+            "Fast concentric shortening",
+            "Isometric contraction",
+            "Eccentric (lengthening) contraction",
+            "Zero activation",
+          ],
+          ans: 2,
+          exp: "Eccentric contractions, where the muscle lengthens while producing force, generate higher force than isometric contractions, which in turn produce more force than concentric shortening.",
+        },
+        {
+          q: "What does the Hill-type model's core idea emphasize about muscle force?",
+          opts: [
+            "Force is determined entirely and instantaneously by the current neural command",
+            "Force depends on the muscle's current state and recent history, not just the present command",
+            "Force is constant regardless of length or velocity",
+            "Force depends only on PCSA",
+          ],
+          ans: 1,
+          exp: "A key idea of the Hill-type model is that force is not instantaneous — it depends on the muscle's current length, velocity, and activation state, which reflect recent history, not just the present neural signal.",
+        },
+      ];
+
+      let mcqTimer,
+        mcqSeconds = 600,
+        mcqStartTime,
+        mcqAnswers = {},
+        mcqSubmitted = false;
+
+      function startMCQ() {
+        document.getElementById("mcq-start-screen").style.display = "none";
+        document.getElementById("mcq-quiz-screen").style.display = "block";
+        buildMCQ();
+        mcqStartTime = Date.now();
+        mcqTimer = setInterval(tickMCQ, 1000);
+      }
+      function buildMCQ() {
+        const wrap = document.getElementById("mcq-questions");
+        wrap.innerHTML = "";
+        mcqData.forEach((q, i) => {
+          const keys = ["A", "B", "C", "D"];
+          const opts = q.opts
+            .map(
+              (o, j) =>
+                `<button class="option-btn" id="opt-${i}-${j}" onclick="selectOpt(${i},${j})"><span class="option-key">${keys[j]}</span>${o}</button>`,
+            )
+            .join("");
+          wrap.innerHTML += `<div class="question-block"><div class="q-number">Question ${i + 1} of ${mcqData.length}</div><div class="q-text">${q.q}</div><div class="options">${opts}</div><div class="feedback-msg" id="fb-${i}"></div></div>`;
+        });
+      }
+      function selectOpt(qi, oi) {
+        if (mcqSubmitted) return;
+        mcqData[qi].opts.forEach((_, j) => {
+          document.getElementById(`opt-${qi}-${j}`).style.background = "";
+          document.getElementById(`opt-${qi}-${j}`).style.borderColor = "";
+        });
+        document.getElementById(`opt-${qi}-${oi}`).style.borderColor =
+          "var(--ink)";
+        document.getElementById(`opt-${qi}-${oi}`).style.background = "#fff";
+        mcqAnswers[qi] = oi;
+        const answered = Object.keys(mcqAnswers).length;
+        document.getElementById("mcq-progress-text").textContent =
+          `${answered} / ${mcqData.length}`;
+        document.getElementById("mcq-progress-fill").style.width =
+          `${(answered / mcqData.length) * 100}%`;
+      }
+      function tickMCQ() {
+        mcqSeconds--;
+        if (mcqSeconds <= 0) {
+          mcqSeconds = 0;
+          clearInterval(mcqTimer);
+          submitMCQ();
+        }
+        const m = Math.floor(mcqSeconds / 60)
+          .toString()
+          .padStart(2, "0");
+        const s = (mcqSeconds % 60).toString().padStart(2, "0");
+        document.getElementById("mcq-timer").textContent = `${m}:${s}`;
+      }
+      function submitMCQ() {
+        clearInterval(mcqTimer);
+        mcqSubmitted = true;
+        let correct = 0;
+        mcqData.forEach((q, i) => {
+          const sel = mcqAnswers[i];
+          const fb = document.getElementById(`fb-${i}`);
+          q.opts.forEach((_, j) => {
+            const btn = document.getElementById(`opt-${i}-${j}`);
+            btn.disabled = true;
+            btn.style.background = "";
+            btn.style.borderColor = "";
+          });
+          if (sel === undefined) {
+            document.getElementById(`opt-${i}-${q.ans}`).className =
+              "option-btn wrong";
+            fb.textContent =
+              "Not answered. Correct: " +
+              String.fromCharCode(65 + q.ans) +
+              ". " +
+              q.exp;
+            fb.className = "feedback-msg show bad";
+          } else if (sel === q.ans) {
+            document.getElementById(`opt-${i}-${sel}`).className =
+              "option-btn correct";
+            fb.textContent = "✓ Correct! " + q.exp;
+            fb.className = "feedback-msg show ok";
+            correct++;
+          } else {
+            document.getElementById(`opt-${i}-${sel}`).className =
+              "option-btn wrong";
+            document.getElementById(`opt-${i}-${q.ans}`).className =
+              "option-btn correct";
+            fb.textContent =
+              "✗ Incorrect. Correct: " +
+              String.fromCharCode(65 + q.ans) +
+              ". " +
+              q.exp;
+            fb.className = "feedback-msg show bad";
+          }
+        });
+        const elapsed = Math.round((Date.now() - mcqStartTime) / 1000);
+        const em = Math.floor(elapsed / 60)
+          .toString()
+          .padStart(2, "0");
+        const es = (elapsed % 60).toString().padStart(2, "0");
+        setTimeout(() => {
+          document.getElementById("mcq-quiz-screen").style.display = "none";
+          const sc = document.getElementById("mcq-score-screen");
+          sc.classList.add("show");
+          document.getElementById("mcq-score-num").textContent = correct;
+          document.getElementById("mcq-correct-count").textContent = correct;
+          document.getElementById("mcq-wrong-count").textContent =
+            mcqData.length - correct;
+          document.getElementById("mcq-time-used").textContent = `${em}:${es}`;
+          const pct = (correct / mcqData.length) * 100;
+          let grade, msg;
+          if (pct >= 90) {
+            grade = "Excellent — A";
+            msg =
+              "Outstanding command of Chapter 5. You understand muscle architecture and the Hill model deeply.";
+          } else if (pct >= 75) {
+            grade = "Good — B";
+            msg = "Solid understanding. Review the questions you missed.";
+          } else if (pct >= 60) {
+            grade = "Pass — C";
+            msg =
+              "You have the basics. Re-read the sections on PCSA, pennation, and tendon mechanics.";
+          } else {
+            grade = "Needs Work — D";
+            msg =
+              "Go back to the study notes, particularly on the force-length/velocity relationships, muscle architecture, and the Hill-type model.";
+          }
+          document.getElementById("mcq-grade").textContent = grade;
+          document.getElementById("mcq-msg").textContent = msg;
+        }, 600);
+      }
+      function resetMCQ() {
+        mcqSeconds = 600;
+        mcqAnswers = {};
+        mcqSubmitted = false;
+        document.getElementById("mcq-score-screen").classList.remove("show");
+        document.getElementById("mcq-start-screen").style.display = "";
+      }
+
+      // ============ FILL IN THE BLANK ============
+      const fitbData = [
+        {
+          before: "The cross-sectional area measured perpendicular to a muscle's fibers, accounting for pennation, is called ",
+          blank: "PCSA",
+          after: ".",
+          hint: "Acronym, four letters. The main determinant of muscle strength.",
+        },
+        {
+          before:
+            "The angle between a muscle's fibers and its tendon's line of action is called the ",
+          blank: "pennation",
+          after: " angle.",
+          hint: "One word. Trades fiber packing density against force transmission efficiency.",
+        },
+        {
+          before:
+            "Muscles with fibers running parallel to the tendon, such as the sartorius, have a long shortening range and ",
+          blank: "lower",
+          after: " force compared to pennate muscles.",
+          hint: "One word, opposite of 'higher'.",
+        },
+        {
+          before:
+            "Longer muscle fibers contain more sarcomeres arranged in series, giving them a higher contraction ",
+          blank: "velocity",
+          after: ".",
+          hint: "One word. Series sarcomeres' shortening speeds add together.",
+        },
+        {
+          before:
+            "The compliant initial portion of a tendon's stress-strain curve, where collagen fibers straighten under low force, is called the ",
+          blank: "toe",
+          after: " region.",
+          hint: "One word, also a body part name.",
+        },
+        {
+          before: "Tendons typically rupture at approximately ",
+          blank: "10",
+          after: "% strain.",
+          hint: "A number.",
+        },
+        {
+          before:
+            "In the Hill-type model, the element representing tendon compliance, placed in series with the contractile element, is the ",
+          blank: "series elastic",
+          after: " element.",
+          hint: "Two words, often abbreviated SE.",
+        },
+        {
+          before:
+            "A compliant tendon allows muscle fibers to shorten internally even while the whole muscle-tendon unit length stays constant — this ",
+          blank: "decouples",
+          after: " fiber mechanics from observed joint motion.",
+          hint: "One word, means to separate or disconnect.",
+        },
+      ];
+
+      let fitbTimerStarted = false,
+        fitbElapsed = 0,
+        fitbTimerRef = null,
+        fitbChecked = {};
+
+      function buildFITB() {
+        const wrap = document.getElementById("fitb-questions");
+        wrap.innerHTML = "";
+        fitbData.forEach((item, i) => {
+          wrap.innerHTML += `<div class="fitb-question">
+          <div class="q-number">Statement ${i + 1} of ${fitbData.length}</div>
+          <div class="fitb-q-text">${item.before}<span style="color:var(--orange)">▢</span>${item.after}</div>
+          <div class="fitb-input-wrap">
+            <input class="fitb-input" id="fitb-inp-${i}" type="text" placeholder="Type your answer…" autocomplete="off" onkeydown="if(event.key==='Enter')checkFITB(${i})">
+            <button class="check-btn" onclick="checkFITB(${i})">Check</button>
+            <button class="check-btn" onclick="showHint(${i})" style="color:#9a9484;">Hint</button>
+          </div>
+          <div class="fitb-hint" id="fitb-hint-${i}">💡 ${item.hint}</div>
+          <div class="fitb-answer" id="fitb-ans-${i}"></div>
+        </div>`;
+        });
+      }
+      function showHint(i) {
+        document.getElementById("fitb-hint-" + i).classList.add("show");
+      }
+      function checkFITB(i) {
+        const inp = document.getElementById("fitb-inp-" + i);
+        const userVal = inp.value.trim().toLowerCase();
+        const correctVal = fitbData[i].blank.toLowerCase();
+        const ansDiv = document.getElementById("fitb-ans-" + i);
+        if (!userVal || fitbChecked[i]) return;
+        fitbChecked[i] = true;
+        const isCorrect =
+          userVal === correctVal ||
+          (correctVal.length > 3 &&
+            correctVal.includes(userVal) &&
+            userVal.length > 2);
+        if (isCorrect) {
+          inp.className = "fitb-input correct";
+          ansDiv.textContent = "✓ Correct!";
+          ansDiv.className = "fitb-answer show";
+          ansDiv.style.color = "var(--green)";
+        } else {
+          inp.className = "fitb-input wrong";
+          ansDiv.textContent = `✗ The answer is: ${fitbData[i].blank}`;
+          ansDiv.className = "fitb-answer show";
+          ansDiv.style.color = "var(--red)";
+          inp.value = fitbData[i].blank;
+        }
+        const done = Object.keys(fitbChecked).length;
+        document.getElementById("fitb-progress-text").textContent =
+          `${done} / ${fitbData.length}`;
+        document.getElementById("fitb-progress-fill").style.width =
+          `${(done / fitbData.length) * 100}%`;
+      }
+      function startFITBTimer() {
+        buildFITB();
+        fitbTimerRef = setInterval(() => {
+          fitbElapsed++;
+          const m = Math.floor(fitbElapsed / 60)
+            .toString()
+            .padStart(2, "0");
+          const s = (fitbElapsed % 60).toString().padStart(2, "0");
+          document.getElementById("fitb-timer").textContent = `${m}:${s}`;
+        }, 1000);
+      }
+      function showFITBScore() {
+        fitbData.forEach((_, i) => {
+          if (!fitbChecked[i]) checkFITB(i);
+        });
+        clearInterval(fitbTimerRef);
+        let c = 0;
+        fitbData.forEach((_, i) => {
+          const inp = document.getElementById("fitb-inp-" + i);
+          if (inp && inp.classList.contains("correct")) c++;
+        });
+        const m = Math.floor(fitbElapsed / 60)
+          .toString()
+          .padStart(2, "0");
+        const s = (fitbElapsed % 60).toString().padStart(2, "0");
+        document.getElementById("fitb-score-num").textContent = c;
+        document.getElementById("fitb-correct-count").textContent = c;
+        document.getElementById("fitb-wrong-count").textContent =
+          fitbData.length - c;
+        document.getElementById("fitb-time-used").textContent = `${m}:${s}`;
+        const pct = (c / fitbData.length) * 100;
+        let grade, msg;
+        if (pct >= 90) {
+          grade = "Excellent — A";
+          msg = "You know the key architecture and tendon terms cold.";
+        } else if (pct >= 75) {
+          grade = "Good — B";
+          msg = "Mostly correct — review any terms you missed.";
+        } else if (pct >= 60) {
+          grade = "Pass — C";
+          msg =
+            "Getting there — re-read the sections on PCSA, pennation, and the Hill model elements.";
+        } else {
+          grade = "Needs Work — D";
+          msg = "Focus on the key definitions in the study notes.";
+        }
+        document.getElementById("fitb-grade").textContent = grade;
+        document.getElementById("fitb-msg").textContent = msg;
+        document.getElementById("fitb-score-screen").classList.add("show");
+      }
+      function resetFITB() {
+        fitbChecked = {};
+        fitbElapsed = 0;
+        fitbTimerStarted = false;
+        clearInterval(fitbTimerRef);
+        document.getElementById("fitb-score-screen").classList.remove("show");
+        document.getElementById("fitb-timer").textContent = "00:00";
+        document.getElementById("fitb-progress-text").textContent = "0 / 8";
+        document.getElementById("fitb-progress-fill").style.width = "0%";
+        buildFITB();
+        startFITBTimer();
+        fitbTimerStarted = true;
+      }
+
+      // ============ FLASHCARDS ============
+      const flashData = [
+        {
+          q: "What is the core Hill-type force equation?",
+          a: "<strong>F_total = a · F_active(l, v) + F_passive(l)</strong> — active force depends on activation, length, and velocity; passive force depends only on stretch.",
+        },
+        {
+          q: "What does PCSA stand for, and why does it matter?",
+          a: "<strong>Physiological Cross-Sectional Area</strong> — the cross-section measured perpendicular to muscle fibers, accounting for pennation. It reflects sarcomeres in parallel and is the main determinant of strength.",
+        },
+        {
+          q: "What is the pennation angle, and what trade-off does it create?",
+          a: "<strong>Pennation Angle</strong> — the angle between fibers and the tendon's line of action. Higher pennation packs in more fibers (more force potential) but reduces each fiber's force transmission efficiency (F_tendon = F_fiber · cos θ).",
+        },
+        {
+          q: "Compare parallel and pennate muscle architecture.",
+          a: "<strong>Parallel</strong> (e.g. sartorius): long shortening range, high velocity, lower force. <strong>Pennate</strong> (e.g. gastrocnemius, deltoid): dense fiber packing, higher force, reduced shortening range.",
+        },
+        {
+          q: "How does fiber length affect contraction velocity?",
+          a: "Longer fibers contain <strong>more sarcomeres in series</strong>. Series sarcomere velocities add together, so longer fibers shorten faster and have a wider force-length operating range.",
+        },
+        {
+          q: "Describe the three regions of a tendon's stress-strain curve.",
+          a: "<strong>Toe region</strong> — compliant, collagen straightens. <strong>Linear region</strong> — stiff, force rises steeply. <strong>Failure region</strong> — rupture, around 10% strain.",
+        },
+        {
+          q: "What is the difference between a rigid and a compliant tendon?",
+          a: "<strong>Rigid tendon</strong>: fiber length tracks whole muscle-tendon length closely. <strong>Compliant tendon</strong>: stretches under load, letting fibers shorten internally even while overall length stays constant.",
+        },
+        {
+          q: "What are the three elements of the Hill-type muscle model?",
+          a: "<strong>Contractile Element (CE)</strong> — active, force-length-velocity dependent. <strong>Passive Elastic Element (PE)</strong> — parallel spring. <strong>Series Elastic Element (SE)</strong> — represents tendon compliance.",
+        },
+        {
+          q: "Summarize the force-velocity relationship from this chapter.",
+          a: "<strong>Concentric</strong> (shortening): force decreases as velocity increases. <strong>Isometric</strong>: moderate-to-high, steady force. <strong>Eccentric</strong> (lengthening): force exceeds isometric.",
+        },
+        {
+          q: "What are the two ways the nervous system increases muscle force?",
+          a: "<strong>Rate Coding</strong> — raising motor neuron firing frequency toward tetanus. <strong>Motor Unit Recruitment</strong> — activating more units, small to large (size principle).",
+        },
+        {
+          q: "What characterizes Type I, IIa, and IIb muscle fibers?",
+          a: "<strong>Type I</strong>: slow, highly fatigue-resistant. <strong>Type IIa</strong>: moderate speed and fatigue resistance. <strong>Type IIb</strong>: fast, powerful, fatigues quickly.",
+        },
+        {
+          q: "What is optimal fiber length?",
+          a: "<strong>Optimal Fiber Length</strong> — the length at which actin-myosin overlap is ideal and a muscle fiber produces its maximum active force.",
+        },
+        {
+          q: "Why are fiber length and PCSA considered independent design parameters?",
+          a: "Sarcomeres <strong>in series</strong> (fiber length) add their velocities; sarcomeres <strong>in parallel</strong> (captured by PCSA) add their forces. One tunes speed, the other tunes strength.",
+        },
+        {
+          q: "What is the central idea the Hill-type model emphasizes?",
+          a: "<strong>Force is not instantaneous</strong> — it depends on the muscle's current state (length, velocity, activation) and recent history, not just the present neural command.",
+        },
+        {
+          q: "Why does a compliant tendon complicate interpreting joint motion?",
+          a: "It <strong>decouples</strong> fiber-level length and velocity from the whole muscle-tendon unit's length and velocity, so the force-length/velocity curves apply to the fiber, not necessarily to the observed joint motion.",
+        },
+        {
+          q: "One-sentence exam summary of Chapter 5?",
+          a: "Muscle force is determined by <strong>activation-modulated cross-bridge dynamics</strong>, shaped by force-length and force-velocity properties, and scaled by <strong>architecture</strong> — PCSA, fiber length, pennation, and tendon compliance.",
+        },
+      ];
+
+      let flashInit = false,
+        fcIdx = 0,
+        fcState = [],
+        fcKnown = 0,
+        fcAgain = 0,
+        fcSkipped = 0;
+
+      function initFlash() {
+        fcState = flashData.map(() => "unseen");
+        fcIdx = 0;
+        fcKnown = 0;
+        fcAgain = 0;
+        fcSkipped = 0;
+        document.getElementById("fc-total").textContent = flashData.length;
+        buildDots();
+        showCard();
+      }
+      function buildDots() {
+        const wrap = document.getElementById("fc-dots");
+        wrap.innerHTML = flashData
+          .map((_, i) => `<div class="fc-dot" id="fc-dot-${i}"></div>`)
+          .join("");
+      }
+      function showCard() {
+        const card = document.getElementById("fc-card");
+        card.classList.remove("flipped");
+        if (fcIdx >= flashData.length) {
+          card.style.display = "none";
+          document.querySelector(".fc-controls").style.display = "none";
+          document.getElementById("fc-complete").classList.add("show");
+          return;
+        }
+        document.getElementById("fc-question").textContent = flashData[fcIdx].q;
+        document.getElementById("fc-answer").innerHTML = flashData[fcIdx].a;
+        document.getElementById("fc-current").textContent = fcIdx + 1;
+        flashData.forEach((_, i) => {
+          const d = document.getElementById("fc-dot-" + i);
+          if (!d) return;
+          d.className = "fc-dot";
+          if (i === fcIdx) d.classList.add("current");
+          else if (fcState[i] === "known") d.classList.add("known");
+          else if (fcState[i] === "again") d.classList.add("again");
+        });
+      }
+      function flipCard() {
+        document.getElementById("fc-card").classList.toggle("flipped");
+      }
+      function fcMark(status) {
+        if (fcIdx >= flashData.length) return;
+        fcState[fcIdx] = status;
+        if (status === "known") fcKnown++;
+        else if (status === "again") fcAgain++;
+        else fcSkipped++;
+        document.getElementById("fc-known-count").textContent = fcKnown;
+        document.getElementById("fc-again-count").textContent = fcAgain;
+        document.getElementById("fc-skip-count").textContent = fcSkipped;
+        fcIdx++;
+        showCard();
+      }
+      function resetFlash() {
+        document.getElementById("fc-card").style.display = "";
+        document.querySelector(".fc-controls").style.display = "";
+        document.getElementById("fc-complete").classList.remove("show");
+        initFlash();
+      }
+
+      // ============ TOC HIGHLIGHT ============
+      const tocLinks = document.querySelectorAll(".toc-list a");
+      const sectionBlocks = document.querySelectorAll(".section-block");
+      function onScroll() {
+        let current = "";
+        sectionBlocks.forEach((s) => {
+          if (s.getBoundingClientRect().top < 120) current = "#" + s.id;
+        });
+        tocLinks.forEach((a) => {
+          a.classList.toggle("current", a.getAttribute("href") === current);
+        });
+      }
+      window.addEventListener("scroll", onScroll, { passive: true });
+    </script>
+    <script>
+      const sliders = document.querySelectorAll(".image-slider");
+      sliders.forEach((slider) => {
+        let dragging = false,
+          startX = 0,
+          startScroll = 0;
+
+        slider.addEventListener("mousedown", (e) => {
+          dragging = true;
+          startX = e.clientX;
+          startScroll = slider.scrollLeft;
+          slider.classList.add("dragging");
+        });
+        window.addEventListener("mousemove", (e) => {
+          if (!dragging) return;
+          slider.scrollLeft = startScroll - (e.clientX - startX);
+        });
+        window.addEventListener("mouseup", () => {
+          dragging = false;
+          slider.classList.remove("dragging");
+        });
+        slider.addEventListener(
+          "touchstart",
+          (e) => {
+            startX = e.touches[0].clientX;
+            startScroll = slider.scrollLeft;
+          },
+          { passive: true },
+        );
+        slider.addEventListener(
+          "touchmove",
+          (e) => {
+            slider.scrollLeft = startScroll - (e.touches[0].clientX - startX);
+          },
+          { passive: true },
+        );
+      });
+    </script>
+  </body>
+</html>
